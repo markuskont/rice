@@ -3,16 +3,28 @@
 autoload -U colors && colors
 alias ls='ls --color=auto'
 
-# history stuff
-setopt inc_append_history
-setopt share_history
 # set custom env
 export PATH="$PATH:$HOME/go/bin:$HOME/bin"
 export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
 export EDITOR="vim"
 
-export SAVEHIST=1500
+# history stuff
+#setopt inc_append_history
+#setopt share_history
+#export SAVEHIST=1500
+
+#set history size
+export HISTSIZE=10000
+#save history after logout
+export SAVEHIST=10000
+#history file
 export HISTFILE=~/.zsh_history
+#append into history file
+setopt INC_APPEND_HISTORY
+#save only one command if 2 common are same and consistent
+setopt HIST_IGNORE_DUPS
+#add timestamp for each entry
+setopt EXTENDED_HISTORY   
 
 alias fuckit='vagrant destroy -f && vagrant up'
 alias zzz='systemctl suspend'
