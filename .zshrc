@@ -34,7 +34,7 @@ alias pbpaste='xsel --clipboard --output'
 
 export WALLPAPER="~/Pictures/wallhaven-535721.jpg"
 
-source ~/.env-work
+[[ -f ~/.env-work ]] && source ~/.env-work
 
 # functions
 function est_keymap {
