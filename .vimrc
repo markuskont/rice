@@ -34,6 +34,12 @@ syntax on
 set background=dark
 colorscheme solarized
 
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" scratch window is annoying and does not play nice with splits
+set completeopt-=preview
+
 filetype plugin indent on
 set relativenumber
 set nu
@@ -115,10 +121,14 @@ EOF
 " =========================================================
 " Golang
 " =========================================================
-au FileType golang setlocal omnifunc=go#complete#Complete
+" au FileType golang setlocal omnifunc=go#complete#Complete foldmethod=marker foldmarker={,} foldlevel=2
+au FileType go setlocal omnifunc=go#complete#Complete
+au FileType go setl foldmethod=indent
 
 " =========================================================
 " LaTeX
 " =========================================================
 
 let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats='pdf, aux'
