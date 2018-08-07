@@ -44,10 +44,6 @@ filetype plugin indent on
 set relativenumber
 set nu
 
-call plug#begin()
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-call plug#end()
-
 " visualize special chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " set list
@@ -123,7 +119,7 @@ EOF
 " =========================================================
 " au FileType golang setlocal omnifunc=go#complete#Complete foldmethod=marker foldmarker={,} foldlevel=2
 au FileType go setlocal omnifunc=go#complete#Complete
-au FileType go setl foldmethod=indent
+au FileType go setl foldmethod=syntax
 
 " =========================================================
 " LaTeX
