@@ -37,8 +37,12 @@ set background=dark
 "let g:solarized_termcolors=256
 colorscheme solarized
 
+" Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+" Does not make senso to highlight folded code, point is to remove it from
+" visual spam
+highlight Folded cterm=None
 
 " scratch window is annoying and does not play nice with splits
 set completeopt-=preview
