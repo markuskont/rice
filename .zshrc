@@ -4,7 +4,7 @@ autoload -U colors && colors
 alias ls='ls --color=auto'
 
 # set custom env
-export PATH="$PATH:$HOME/go/bin:$HOME/bin"
+export PATH="$PATH:$HOME/bin"
 export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
 export EDITOR="vim"
 
@@ -12,6 +12,7 @@ export EDITOR="vim"
 #setopt inc_append_history
 #setopt share_history
 #export SAVEHIST=1500
+export KEYTIMEOUT=1
 
 #set history size
 export HISTSIZE=10000
@@ -75,5 +76,56 @@ preexec () { print -rn -- $terminfo[el]; }
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-export KEYTIMEOUT=1
+_current_envrc=""
 
+## Per-project enviornment variables
+#_envrc_handler() {
+#	local current_dir="$(pwd -P)"
+#
+#	while [[ $current_dir != "" ]]; do
+#		if [[ -e "$current_dir/.envrc" ]]; then
+#			_load_envrc "$current_dir/.envrc"
+#			return
+#		fi
+#		current_dir=${current_dir%/*}
+#	done
+#
+#	# If we found no envrc and we were using one before, restore the previous
+#	# enviornment
+#	if [[ "$_current_envrc" != "" ]]; then
+#		_unload_current_envrc
+#	fi
+#}
+#
+#_load_envrc() {
+#	# Don't do anything if we're already using this envrc
+#	[[ $_current_envrc == $1 ]] && return
+#
+#	# If we're using another envrc, unload it first
+#	[[ $_current_envrc != '' ]] && [[ $_current_envrc != $1 ]] && _unload_current_envrc
+#
+#	# Generate a script to reset the changed variables once we've left the
+#	# directory
+#	while read l; do
+#		local current_var=$(echo $l | grep -oP '^[^\s=]*')
+#
+#		if eval "[[ -z $(echo '$'$current_var) ]]"; then
+#			_envrc_diff="${_envrc_diff}unset $current_var;"
+#		else
+#			_envrc_diff="${_envrc_diff}export $current_var='$(eval "echo -n \$$current_var")';"
+#		fi
+#
+#		# Now execute the line from envrc
+#		eval "export $l"
+#	done < "$1"
+#	
+#	_current_envrc=$1
+#	echo "(zsh: Loaded envrc: '$1')"
+#}
+#
+#_unload_current_envrc() {
+#	eval "$_envrc_diff"
+#	unset _envrc_diff
+#	echo "(zsh: Unloaded '$_current_envrc')"
+#	_current_envrc=""
+#}
