@@ -26,12 +26,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 set pastetoggle=<F2>
 
+set timeoutlen=1000 ttimeoutlen=0
+
 " ==============================
 " Programming stuff
 " ==============================
 
 syntax on
 set background=dark
+"let g:solarized_termcolors=256
 colorscheme solarized
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -119,7 +122,9 @@ EOF
 " =========================================================
 " au FileType golang setlocal omnifunc=go#complete#Complete foldmethod=marker foldmarker={,} foldlevel=2
 au FileType go setlocal omnifunc=go#complete#Complete
-au FileType go setl foldmethod=syntax
+au FileType go setl foldmethod=indent foldcolumn=2
+au FileType go let g:go_fmt_experimental=1
+au FileType go let g:go_highlight_types = 1
 
 " =========================================================
 " LaTeX
