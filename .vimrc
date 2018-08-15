@@ -35,14 +35,15 @@ set timeoutlen=1000 ttimeoutlen=0
 syntax on
 set background=dark
 "let g:solarized_termcolors=256
-colorscheme solarized
+"color solarized
+color dracula
 
 " Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 " Does not make senso to highlight folded code, point is to remove it from
 " visual spam
-highlight Folded cterm=None
+" highlight Folded cterm=None
 
 " scratch window is annoying and does not play nice with splits
 set completeopt-=preview
