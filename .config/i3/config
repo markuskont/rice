@@ -34,6 +34,31 @@ for_window [class="^.*"] border pixel 3
 #new_window 1pixel
 client.focused #555555 #555555 #ffffff #2e9ef4     #CC0000
 
+set_from_resource $darkblack	color0  #000000
+set_from_resource $black	color8  #000000
+set_from_resource $darkred	color1  #000000
+set_from_resource $red		color9  #000000
+set_from_resource $darkgreen	color2  #000000
+set_from_resource $green	color10 #000000
+set_from_resource $darkyellow	color3  #000000
+set_from_resource $yellow	color11 #000000
+set_from_resource $darkblue	color4  #000000
+set_from_resource $blue		color12 #000000
+set_from_resource $darkmagenta	color5  #000000
+set_from_resource $magenta	color13 #000000
+set_from_resource $darkcyan	color6  #000000
+set_from_resource $cyan		color14 #000000
+set_from_resource $darkwhite	color7  #000000
+set_from_resource $white	color15 #000000
+set $transparent		#00000000
+
+#                       BORDER		BACKGROUND	TEXT		INDICATOR   CHILD_BORDER
+client.focused		$red		$red		$magenta	$darkmagenta		$darkblue
+client.unfocused	$transparent	$blue		$white		$darkblue		$darkblack
+client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
+client.urgent		$darkred	$darkred	$black		$darkred		$darkred
+client.background $black
+
 gaps inner 10
 gaps outer 10
 smart_borders on
@@ -203,4 +228,5 @@ focus_follows_mouse no
 #exec xrandr --output "HDMI-3" --auto --output HDMI-2 --off 
 exec --no-startup-id unclutter
 exec --no-startup-id compton --xrender-sync-fence
-exec --no-startup-id feh --bg-scale "~/Pictures/wallhaven-626490.jpg" 
+#exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/
+exec --no-startup-id ~/bin/wallpaper.sh
