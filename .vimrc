@@ -55,21 +55,28 @@ set nu
 " visualize special chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " set list
+"
+" autoclose quotes, brackets etc
+ino ' ''<left>
+ino " ""<left>
+ino { {}<left>
+ino [ []<left>
+ino ( ()<left>
 
 "inoremap (      ()<Left>
 "inoremap (<CR>  (<CR>)<Esc>O
 "inoremap ((     (
 "inoremap (      ()<Left>
 
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {     {
-inoremap {}     {}
-
-inoremap [      []<Left>
-inoremap [<CR>  [<CR>]<Esc>O
-inoremap [     [
-inoremap []     []
+"inoremap {      {}<Left>
+"inoremap {<CR>  {<CR>}<Esc>O
+"inoremap {     {
+"inoremap {}     {}
+"
+"inoremap [      []<Left>
+"inoremap [<CR>  [<CR>]<Esc>O
+"inoremap [     [
+"inoremap []     []
 
 " ===========================================================
 " FileType specific changes
