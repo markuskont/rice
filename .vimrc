@@ -33,9 +33,20 @@ set timeoutlen=1000 ttimeoutlen=0
 " ==============================
 
 syntax on
+
+set hidden
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 set background=dark
 "let g:solarized_termcolors=256
-"color solarized
+""colorscheme solarized
 color dracula
 
 " Folds
@@ -43,7 +54,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 " Does not make senso to highlight folded code, point is to remove it from
 " visual spam
-" highlight Folded cterm=None
+" "highlight Folded cterm=None
 
 " scratch window is annoying and does not play nice with splits
 set completeopt-=preview
@@ -52,10 +63,13 @@ filetype plugin indent on
 set relativenumber
 set nu
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " visualize special chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " set list
-"
 " autoclose quotes, brackets etc
 ino ' ''<left>
 ino " ""<left>
@@ -67,6 +81,7 @@ ino ( ()<left>
 "inoremap (<CR>  (<CR>)<Esc>O
 "inoremap ((     (
 "inoremap (      ()<Left>
+
 
 "inoremap {      {}<Left>
 "inoremap {<CR>  {<CR>}<Esc>O
@@ -137,6 +152,29 @@ au FileType go setlocal omnifunc=go#complete#Complete
 au FileType go setl foldmethod=indent foldcolumn=2
 au FileType go let g:go_fmt_experimental=1
 au FileType go let g:go_highlight_types = 1
+au FileType go let g:go_highlight_fields = 1
+au FileType go let g:go_highlight_functions = 1
+au FileType go let g:go_highlight_function_calls = 1
+au FileType go let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-go/gosnippets/UltiSnips/"
+au FileType go map <C-n> :cnext<CR>
+au FileType go map <C-m> :cprevious<CR>
+au FileType go nnoremap <leader>a :cclose<CR>
+
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+""au FileType go let g:go_list_type = "quickfix"
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 " =========================================================
 " LaTeX
