@@ -7,6 +7,8 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+set rtp+="/usr/bin/fzf"
+
 set tabstop=2       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
@@ -21,8 +23,8 @@ set autochdir
 execute pathogen#infect()
 
 " automatic NERDtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 set pastetoggle=<F2>
 
@@ -35,6 +37,12 @@ set timeoutlen=1000 ttimeoutlen=0
 syntax on
 
 set hidden
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
