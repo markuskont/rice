@@ -1,3 +1,5 @@
+let mapleader = ','
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -7,7 +9,42 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-set rtp+="/usr/bin/fzf"
+
+"set rtp+="/usr/bin/fzf"
+" FZFlines
+"function! s:line_handler(l)
+"  let keys = split(a:l, ':\t')
+"  exec 'buf' keys[0]
+"  exec keys[1]
+"  normal! ^zz
+"endfunction
+"
+"function! s:buffer_lines()
+"  let res = []
+"  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+"    call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
+"  endfor
+"  return res
+"endfunction
+"
+"command! FZFLines call fzf#run({
+"\   'source':  <sid>buffer_lines(),
+"\   'sink':    function('<sid>line_handler'),
+"\   'options': '--extended --nth=3..',
+"\   'down':    '60%'
+"\})
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 set tabstop=2       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
@@ -38,11 +75,37 @@ syntax on
 
 set hidden
 
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Airline
+let g:airline_powerline_fonts = 1
+
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+" Syntastic airline integration???
+let g:airline#extensions#syntastic#enabled = 1
+"call airline#parts#define_accent('syntastic', 'yellow')
+let airline#extensions#syntastic#warning_symbol = 'W:'
+let airline#extensions#syntastic#stl_format_warn = '%W{[%w(#%fw)]}'
+
+let airline#extensions#syntastic#error_symbol = 'E:'
+let airline#extensions#syntastic#stl_format_err = '%E{[%e(#%fe)]}'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -158,15 +221,31 @@ EOF
 " au FileType golang setlocal omnifunc=go#complete#Complete foldmethod=marker foldmarker={,} foldlevel=2
 au FileType go setlocal omnifunc=go#complete#Complete
 au FileType go setl foldmethod=indent foldcolumn=2
-au FileType go let g:go_fmt_experimental=1
-au FileType go let g:go_highlight_types = 1
-au FileType go let g:go_highlight_fields = 1
-au FileType go let g:go_highlight_functions = 1
-au FileType go let g:go_highlight_function_calls = 1
-au FileType go let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-go/gosnippets/UltiSnips/"
 au FileType go map <C-n> :cnext<CR>
 au FileType go map <C-m> :cprevious<CR>
 au FileType go nnoremap <leader>a :cclose<CR>
+
+" use goimports for formatting
+let g:go_fmt_command = "goimports"
+
+" turn highlighting on
+let g:go_fmt_experimental=1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+
+" Open go doc in vertical window, horizontal, or tab
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
