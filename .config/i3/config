@@ -68,7 +68,7 @@ bindsym $mod+Return exec st
 bindsym $mod+Shift+Return exec st -e tmux
 
 # st -eart a terminal with python
-bindsym $mod+p exec $term -e ~/.local/bin/bpython
+#bindsym $mod+p exec $term -e ~/.local/bin/bpython
 
 # lock screen
 bindcode $mod+48	exec		lock
@@ -76,7 +76,7 @@ bindcode $mod+48	exec		lock
 #bindsym $mod+Shift+r    exec $term -e sudo ranger /
 
 # personal binds
-bindsym $mod+r          exec $term -e ranger
+bindsym $mod+Shift+r          exec $term -e ranger
 bindsym $mod+t          split toggle
 bindsym $mod+i          exec st -e htop
 bindsym $mod+s          sticky toggle
@@ -213,6 +213,22 @@ bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
 #bindsym XF86Launch1 exec /usr/bin/pactl play-sample that_was_easy
 #bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 #bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+
+# #---Dropdown/Scratchpad Windows---# #
+for_window [instance="filexplorer"] floating enable
+for_window [instance="filexplorer"] resize set 1200 800
+for_window [instance="filexplorer"] move scratchpad
+for_window [instance="filexplorer"] border pixel 5
+exec --no-startup-id st -n filexplorer -e ranger
+bindsym $mod+r			[instance="filexplorer"] scratchpad show; [instance="filexplorer"] move position center
+
+# #---Dropdown/Scratchpad Windows---# #
+for_window [instance="pyconsole"] floating enable
+for_window [instance="pyconsole"] resize set 1200 800
+for_window [instance="pyconsole"] move scratchpad
+for_window [instance="pyconsole"] border pixel 5
+exec --no-startup-id st -n pyconsole -e python
+bindsym $mod+p			[instance="pyconsole"] scratchpad show; [instance="pyconsole"] move position center
 
 # #---Dropdown/Scratchpad Windows---# #
 for_window [instance="chatbox"] floating enable
