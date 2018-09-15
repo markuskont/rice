@@ -9,31 +9,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-
-"set rtp+="/usr/bin/fzf"
-" FZFlines
-"function! s:line_handler(l)
-"  let keys = split(a:l, ':\t')
-"  exec 'buf' keys[0]
-"  exec keys[1]
-"  normal! ^zz
-"endfunction
-"
-"function! s:buffer_lines()
-"  let res = []
-"  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
-"    call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
-"  endfor
-"  return res
-"endfunction
-"
-"command! FZFLines call fzf#run({
-"\   'source':  <sid>buffer_lines(),
-"\   'sink':    function('<sid>line_handler'),
-"\   'options': '--extended --nth=3..',
-"\   'down':    '60%'
-"\})
-
+nnoremap <leader>f :FZF<CR>
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
@@ -117,7 +93,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 set background=dark
 "let g:solarized_termcolors=256
-""colorscheme solarized
+"colorscheme solarized
 color dracula
 
 " Folds
@@ -223,7 +199,9 @@ au FileType go setlocal omnifunc=go#complete#Complete
 au FileType go setl foldmethod=indent foldcolumn=2
 au FileType go map <C-n> :cnext<CR>
 au FileType go map <C-m> :cprevious<CR>
-au FileType go nnoremap <leader>a :cclose<CR>
+"au FileType go nnoremap <leader>a :cclose<CR>
+au FileType go nnoremap <leader>a :GoAlternate<CR>
+au FileType go nnoremap <leader>d :GoDoc<CR>
 
 " use goimports for formatting
 let g:go_fmt_command = "goimports"
@@ -249,6 +227,7 @@ au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>i  <Plug>(go-install)
 
 ""au FileType go let g:go_list_type = "quickfix"
 " run :GoBuild or :GoTestCompile based on the go file
@@ -270,3 +249,4 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
+au FileType tex set spell spelllang=en_us
