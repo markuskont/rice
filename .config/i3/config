@@ -227,7 +227,7 @@ for_window [instance="pyconsole"] floating enable
 for_window [instance="pyconsole"] resize set 1200 800
 for_window [instance="pyconsole"] move scratchpad
 for_window [instance="pyconsole"] border pixel 5
-exec --no-startup-id st -n pyconsole -e python
+exec --no-startup-id st -n pyconsole -e ~/bin/ipython-sandbox
 bindsym $mod+p			[instance="pyconsole"] scratchpad show; [instance="pyconsole"] move position center
 
 # #---Dropdown/Scratchpad Windows---# #
