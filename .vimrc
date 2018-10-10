@@ -1,5 +1,19 @@
 let mapleader = ','
 
+let g:deoplete#enable_at_startup = 1
+
+noremap <Leader>c :ccl <bar> lcl<CR>
+"let windo if &buftype != "quickfix" | lclose | endif
+
+function WordCount()
+  let s:old_status = v:statusmsg
+  exe "silent normal g\<c-g>"
+  let s:word_count = str2nr(split(v:statusmsg)[11])
+  let v:statusmsg = s:old_status
+  return s:word_count
+endfunction
+
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -65,7 +79,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Airline
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#formatter = 'default'
+
+let g:airline#extensions#wordcount#formatter#default#fmt = '%s words'
+
 let g:airline_powerline_fonts = 1
+
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -98,6 +118,15 @@ color dracula
 
 " Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+"autocmd BufWrite * mkview
+"autocmd BufRead * silent loadview
+"augroup remember_folds
+"  autocmd!
+"  autocmd BufWinLeave * mkview
+"  autocmd BufWinEnter * silent! loadview
+"augroup END
+
 vnoremap <Space> zf
 " Does not make senso to highlight folded code, point is to remove it from
 " visual spam
