@@ -1,6 +1,12 @@
 let mapleader = ','
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 'ignorecase'
+let g:deoplete#sources#go = 'vim-go'
+let g:deoplete#sources#jedi#python_path = 'python3'
+set completeopt+=noinsert
+set completeopt-=preview
+autocmd BufReadPost * call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy', 'matcher_length', 'camel_case'])
 
 noremap <Leader>c :ccl <bar> lcl<CR>
 "let windo if &buftype != "quickfix" | lclose | endif
@@ -110,6 +116,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
 set background=dark
 "let g:solarized_termcolors=256
@@ -138,10 +145,6 @@ set completeopt-=preview
 filetype plugin indent on
 set relativenumber
 set nu
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " visualize special chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -190,6 +193,7 @@ autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2
 
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
+au FileType python set omnifunc=jedi#completions
 au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 au FileType python set foldmethod=indent foldlevel=99
@@ -225,12 +229,16 @@ EOF
 " =========================================================
 " au FileType golang setlocal omnifunc=go#complete#Complete foldmethod=marker foldmarker={,} foldlevel=2
 au FileType go setlocal omnifunc=go#complete#Complete
+"au FileType go setlocal omnifunc=
 au FileType go setl foldmethod=indent foldcolumn=2
 au FileType go map <C-n> :cnext<CR>
 au FileType go map <C-m> :cprevious<CR>
 "au FileType go nnoremap <leader>a :cclose<CR>
 au FileType go nnoremap <leader>a :GoAlternate<CR>
 au FileType go nnoremap <leader>d :GoDoc<CR>
+
+"let g:deoplete#sources#go#cgo = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " use goimports for formatting
 let g:go_fmt_command = "goimports"
@@ -252,7 +260,6 @@ let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
