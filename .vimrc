@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plug')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 
@@ -35,6 +34,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Initialize plugin system
