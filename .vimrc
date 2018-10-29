@@ -1,3 +1,29 @@
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plug')
+
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'sirver/UltiSnips'
+Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" Initialize plugin system
+call plug#end()
+
 let mapleader = ','
 
 let g:deoplete#enable_at_startup = 1
@@ -76,7 +102,7 @@ let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
