@@ -12,6 +12,7 @@ Plug 'w0rp/ale'
 Plug 'chrisbra/csv.vim'
 
 Plug 'saltstack/salt-vim'
+Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
 
 Plug 'jalvesaq/Nvim-R'
 Plug 'gaalcaras/ncm-R'
