@@ -3,13 +3,29 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plug')
 
-Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+
+Plug 'chrisbra/csv.vim'
+
+Plug 'saltstack/salt-vim'
+
+Plug 'jalvesaq/Nvim-R'
+Plug 'gaalcaras/ncm-R'
+
 Plug 'sirver/UltiSnips'
+Plug 'honza/vim-snippets'
+
+Plug 'vim-latex/vim-latex'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
+Plug 'altercation/vim-colors-solarized'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
