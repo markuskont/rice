@@ -5,6 +5,15 @@ call plug#begin('~/.vim/plug')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
+
+Plug 'rust-lang/rust.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  " condensed html
+Plug 'burnettk/vim-angular'
+Plug 'tpope/vim-jdaddy'            " JSON text object
+
+Plug 'derekwyatt/vim-scala'
+Plug 'wannesm/wmgraphviz.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
@@ -43,13 +52,10 @@ call plug#end()
 
 let mapleader = ','
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 'ignorecase'
-let g:deoplete#sources#go = 'vim-go'
-let g:deoplete#sources#jedi#python_path = 'python3'
-set completeopt+=noinsert
-set completeopt-=preview
-autocmd BufReadPost * call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy', 'matcher_length', 'camel_case'])
+"set background=dark
+"let g:solarized_termcolors=256
+"colorscheme solarized
+color dracula
 
 noremap <Leader>c :ccl <bar> lcl<CR>
 "let windo if &buftype != "quickfix" | lclose | endif
@@ -64,15 +70,16 @@ endfunction
 
 
 "split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
 
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>l :Lines<CR>
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
@@ -95,9 +102,6 @@ set expandtab       " Expand TABs to spaces
 
 set autochdir
 
-" plugin manager
-execute pathogen#infect()
-
 " automatic NERDtree
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -112,11 +116,19 @@ set timeoutlen=1000 ttimeoutlen=0
 
 syntax on
 
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 'ignorecase'
+let g:deoplete#sources#jedi#python_path = 'python3'
+set completeopt+=noinsert
+set completeopt-=preview
+autocmd BufReadPost * call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy', 'matcher_length', 'camel_case'])
+
+
 set hidden
 
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
 
 set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -134,7 +146,6 @@ let g:airline#extensions#wordcount#formatter = 'default'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%s words'
 
 let g:airline_powerline_fonts = 1
-
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -161,10 +172,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
-set background=dark
-"let g:solarized_termcolors=256
-"colorscheme solarized
-color dracula
 
 " Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -180,7 +187,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 " Does not make senso to highlight folded code, point is to remove it from
 " visual spam
-" "highlight Folded cterm=None
+" highlight Folded cterm=None
 
 " scratch window is annoying and does not play nice with splits
 set completeopt-=preview
@@ -279,34 +286,37 @@ au FileType go map <C-m> :cprevious<CR>
 "au FileType go nnoremap <leader>a :cclose<CR>
 au FileType go nnoremap <leader>a :GoAlternate<CR>
 au FileType go nnoremap <leader>d :GoDoc<CR>
+au FileType go nnoremap <leader>r :GoReplace<CR>
+au FileType go nnoremap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
-"let g:deoplete#sources#go#cgo = 1
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+"au FileType go let g:deoplete#sources#go#cgo = 1
+au FileType go let g:deoplete#sources#go = 'vim-go'
+au FileType go let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
 
 " use goimports for formatting
-let g:go_fmt_command = "goimports"
+au FileType go let g:go_fmt_command = "goimports"
 
 " turn highlighting on
-let g:go_fmt_experimental=1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+au FileType go let g:go_fmt_experimental=1
+au FileType go let g:go_highlight_fields = 1
+au FileType go let g:go_highlight_types = 1
+au FileType go let g:go_highlight_functions = 1
+au FileType go let g:go_highlight_function_calls = 1
+au FileType go let g:go_highlight_methods = 1
+au FileType go let g:go_highlight_structs = 1
+au FileType go let g:go_highlight_operators = 1
+au FileType go let g:go_highlight_build_constraints = 1
+"au FileType go let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>i  <Plug>(go-install)
+au FileType go nmap <leader>b  <Plug>(go-build)
+au FileType go nmap <leader>r  <Plug>(go-run)
+au FileType go nmap <leader>i  <Plug>(go-install)
 
 ""au FileType go let g:go_list_type = "quickfix"
 " run :GoBuild or :GoTestCompile based on the go file
@@ -319,7 +329,6 @@ function! s:build_go_files()
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 " =========================================================
 " LaTeX
