@@ -1,9 +1,9 @@
 [[ -f ~/.env-work ]] && source ~/.env-work
 
 # set custom env
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/go/bin"
 export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # history stuff
 #setopt inc_append_history
@@ -34,6 +34,11 @@ alias fvim='nvim $(fzf --height 40% --reverse -m)'
 
 export WALLPAPER="~/Pictures/wallhaven-535721.jpg"
 
+#ssh() {
+#    tmux rename-window "$*"
+#    command ssh "$@"
+#    exit
+#}
 
 bindkey -v
 
@@ -143,3 +148,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

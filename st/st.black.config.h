@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Source Code Pro:style=Semibold:size=9:antialias=true";
+static char *font = "hack:size=9:antialias=true";
 static int borderpx = 0;
 
 /*

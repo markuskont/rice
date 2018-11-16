@@ -22,6 +22,7 @@ Plug 'chrisbra/csv.vim'
 
 Plug 'saltstack/salt-vim'
 Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
+Plug 'nathanielc/vim-tickscript'
 
 Plug 'jalvesaq/Nvim-R'
 Plug 'gaalcaras/ncm-R'
@@ -34,6 +35,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
+Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
 
 if has('nvim')

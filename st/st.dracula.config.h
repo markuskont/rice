@@ -5,7 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Source Code Pro:style=Semibold:size=9:antialias=true";
+static char *font = "hack:size=9:antialias=true";
+//static char *font = "Source Code Pro:size=9:font-weight=600:antialias=true";
+//static char *font = "hack:style=Semibold:size=9:antialias=true";
 static int borderpx = 0;
 
 /*
@@ -83,7 +85,8 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-unsigned int alpha = 0xff;
+unsigned int alpha = 0xf0;
+//unsigned int alpha = 0xff;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
