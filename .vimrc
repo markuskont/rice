@@ -37,6 +37,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
 Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -57,7 +60,7 @@ let mapleader = ','
 "set background=dark
 "let g:solarized_termcolors=256
 "colorscheme solarized
-color dracula
+color palenight
 
 noremap <Leader>c :ccl <bar> lcl<CR>
 "let windo if &buftype != "quickfix" | lclose | endif
