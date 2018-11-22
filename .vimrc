@@ -51,6 +51,7 @@ endif
 
 Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'zchee/deoplete-jedi'
 
 " Initialize plugin system
 call plug#end()
@@ -60,7 +61,7 @@ let mapleader = ','
 "set background=dark
 "let g:solarized_termcolors=256
 "colorscheme solarized
-color palenight
+color dracula
 
 noremap <Leader>c :ccl <bar> lcl<CR>
 "let windo if &buftype != "quickfix" | lclose | endif
