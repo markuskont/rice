@@ -61,6 +61,8 @@ Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
 Plug 'wokalski/autocomplete-flow'
 
+Plug 'wellle/tmux-complete.vim'
+
 " Initialize plugin system
 call plug#end()
 
