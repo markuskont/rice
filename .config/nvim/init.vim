@@ -58,8 +58,8 @@ Plug 'Yilin-Yang/vim-markbar'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 Plug 'sebastianmarkow/deoplete-rust'
-
 Plug 'zchee/deoplete-clang'
+Plug 'wokalski/autocomplete-flow'
 
 " Initialize plugin system
 call plug#end()
@@ -154,12 +154,16 @@ let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 'ignorecase'
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_refresh_always = 1
 let g:deoplete#sources#jedi#python_path = 'python3'
+
 set completeopt+=noinsert
 set completeopt-=preview
 
-autocmd BufReadPost * call deoplete#custom#option({ 'camel_case': v:true })
+"autocmd BufReadPost * call deoplete#custom#option({ 'camel_case': v:true })
 autocmd BufReadPost * call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy', 'matcher_length', 'camel_case'])
 
 " Disable deoplete when in multi cursor mode
