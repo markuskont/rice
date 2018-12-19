@@ -60,8 +60,9 @@ Plug 'zchee/deoplete-jedi'
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
 Plug 'wokalski/autocomplete-flow'
+Plug 'xolox/vim-lua-ftplugin'
 
-Plug 'wellle/tmux-complete.vim'
+"Plug 'wellle/tmux-complete.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -282,6 +283,9 @@ au FileType c let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linu
 au FileType rust let g:deoplete#sources#rust#racer_binary="/home/markus/.cargo/bin/racer"
 au FileType rust let g:deoplete#sources#rust#rust_source_path="/home/markus/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
+" Lua
+au FileType lua set omnifunc=lua_complete_omni
+
 " Javascript
 au BufRead *.js set makeprg=jslint\ %
 " Use tab to scroll through autocomplete menus
@@ -347,6 +351,7 @@ au FileType go let g:deoplete#sources#go#sort_class = ['package', 'func', 'type'
 
 au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 
+"au FileType go let g:go_auto_sameids = 1
 au FileType go let g:go_auto_type_info = 1
 au FileType go let g:go_highlight_build_constraints = 1
 au FileType go let g:go_highlight_extra_types = 1
@@ -356,29 +361,33 @@ au FileType go let g:go_highlight_methods = 1
 au FileType go let g:go_highlight_operators = 1
 au FileType go let g:go_highlight_structs = 1
 au FileType go let g:go_highlight_types = 1
-au FileType go let g:go_auto_sameids = 1
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
 
 au FileType go nmap <F12> <Plug>(go-def)
 " Open go doc in vertical window, horizontal, or tab
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+"au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+"au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 "au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-
-au FileType go nmap <leader>b  <Plug>(go-build)
-au FileType go nmap <leader>r  <Plug>(go-run)
-"au FileType go nmap <leader>i  <Plug>(go-install)
-au FileType go nmap <leader>t  <Plug>(go-test)
 
 au FileType go map <C-n> :cnext<CR>
 au FileType go map <C-m> :cprevious<CR>
-"au FileType go nnoremap <leader>a :cclose<CR>
-au FileType go nnoremap <leader>a :GoAlternate<CR>
-au FileType go nnoremap <leader>d :GoDoc<CR>
-au FileType go nnoremap <leader>r :GoReplace<CR>
-au FileType go nnoremap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+"au FileType go nmap <leader>b  <Plug>(go-build)
+au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+au FileType go nmap <leader>r  <Plug>(go-run)
+au FileType go nmap <leader>t  <Plug>(go-test)
+au FileType go nmap <leader>d  <Plug>(go-def)
+
+au FileType go nmap <leader>a :GoAlternate<CR>
+au FileType go nmap <leader>d :GoDoc<CR>
+au FileType go nmap <leader>r :GoReplace<CR>
+au FileType go nmap <leader>id :GoSameIds<CR>
+au FileType go nmap <leader>idc :GoSameIdsClear<CR>
 au FileType go nmap <leader>gt :GoDeclsDir<cr>
+au FileType go nmap <leader>i :GoInstall<cr>
+au FileType go nmap <leader>im :GoImport<cr>
+au FileType go nmap <leader>ipl :GoImpl<cr>
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
