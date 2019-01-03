@@ -60,6 +60,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
 Plug 'wokalski/autocomplete-flow'
+
+Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 
 "Plug 'wellle/tmux-complete.vim'
