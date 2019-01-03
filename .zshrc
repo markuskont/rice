@@ -1,7 +1,8 @@
 [[ -f ~/.env-work ]] && source ~/.env-work
+[[ -f ~/.env-golang ]] && source ~/.env-golang
 
 # set custom env
-export PATH="$PATH:$HOME/bin:$HOME/go/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
 export EDITOR="nvim"
 
@@ -34,12 +35,6 @@ alias fvim='nvim $(fzf --height 40% --reverse -m)'
 
 export WALLPAPER="~/Pictures/wallhaven-535721.jpg"
 
-#ssh() {
-#    tmux rename-window "$*"
-#    command ssh "$@"
-#    exit
-#}
-
 bindkey -v
 
 bindkey '^P' up-history
@@ -52,7 +47,7 @@ bindkey '^r' history-incremental-search-backward
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/markus/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
