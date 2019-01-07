@@ -162,7 +162,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
+let g:deoplete#enable_refresh_always = 0
 let g:deoplete#sources#jedi#python_path = 'python3'
 
 set completeopt+=noinsert
