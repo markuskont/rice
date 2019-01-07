@@ -1,0 +1,30 @@
+#!/bin/bash
+
+whatdo=$(echo -e "office\nmobile"|dmenu -fn hack)
+
+function office {
+  if [[ $(/usr/bin/xinput | /bin/grep K750) ]] ; then 
+    setxkbmap -option apple:badmap,lv3:rwin_switch,altwin:swap_alt_win
+    xmodmap ~/.config/xmodmap/office
+  else 
+    /usr/bin/setxkbmap -option
+    xmodmap ~/.config/xmodmap/laptop
+  fi
+  xrandr --output DP-1-1 --auto --primary --output DP-1-2-2 --auto --right-of DP-1-1 --output eDP-1-1 --auto --right-of DP-1-2-2
+  sleep 3
+  bash -c ~/bin/wallpaper.sh
+}
+
+function mobile {
+  xrandr --output DP-1-1 --off --output DP-1-2-2 --off --output eDP-1-1 --auto --primary
+  /usr/bin/setxkbmap -option
+  xmodmap ~/.config/xmodmap/laptop
+  sleep 3
+  bash -c ~/bin/wallpaper.sh
+}
+
+case $whatdo in
+  "office") office;;
+  "mobile") mobile;;
+esac
+

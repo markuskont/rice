@@ -1,0 +1,10 @@
+#!/bin/bash
+
+whatdo=$(echo -e "lock\nsleep\nshutdown\nreboot" | dmenu)
+case $whatdo in
+  "sleep") systemctl suspend;;
+  "lock") lock;;
+  "shutdown") systemct shutdown;;
+  "reboot") systemct reboot;;
+  *) ;;
+esac
