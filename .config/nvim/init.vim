@@ -64,6 +64,11 @@ Plug 'wokalski/autocomplete-flow'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
+Plug 'jalvesaq/vimcmdline'
+
 "Plug 'wellle/tmux-complete.vim'
 
 " Initialize plugin system
@@ -224,6 +229,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 
+" vimcmdline options
+let cmdline_vsplit      = 1      " Split the window vertically
+let cmdline_esc_term    = 1      " Remap <Esc> to :stopinsert in Neovim's terminal
+let cmdline_in_buffer   = 1      " Start the interpreter in a Neovim's terminal
+let cmdline_term_height = 15     " Initial height of interpreter window or pane
+let cmdline_term_width  = 80     " Initial width of interpreter window or pane
+let cmdline_tmp_dir     = '/tmp' " Temporary directory to save files
+let cmdline_outhl       = 1      " Syntax highlight the output
+let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
 
 " Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -337,6 +351,23 @@ if 'VIRTUAL_ENV' in os.environ:
         sys.path.insert(0, str(site_packages))
 EOF
 
+
+
+" =========================================================
+" Julia
+" =========================================================
+au FileType julia let g:LanguageClient_autoStart = 1
+au FileType julia let g:LanguageClient_serverCommands = {
+\   'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+\       using LanguageServer;
+\       using SymbolServer;
+\       server = LanguageServer.LanguageServerInstance(stdin, stdout, false, "/home/markus/.julia/environments/v1.0", "", Dict());
+\       server.runlinter = true;
+\       run(server);
+\   '],
+\ }
+"au FileType julia setlocal omnifunc=LanguageClient#complete
+
 " =========================================================
 " Golang
 " =========================================================
@@ -366,7 +397,7 @@ au FileType go let g:go_highlight_types = 1
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
 
-au FileType go nmap <F12> <Plug>(go-def)
+"au FileType go nmap <F12> <Plug>(go-def)
 " Open go doc in vertical window, horizontal, or tab
 "au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 "au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
@@ -410,3 +441,31 @@ let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 au FileType tex set spell spelllang=en_us
+
+tnoremap <F12> <C-\><C-n> 
+set switchbuf+=useopen
+function! TermEnter()
+  let bufcount = bufnr("$")
+  let currbufnr = 1
+  let nummatches = 0
+  let firstmatchingbufnr = 0
+  while currbufnr <= bufcount
+    if(bufexists(currbufnr))
+      let currbufname = bufname(currbufnr)
+      if(match(currbufname, "term://") > -1)
+        echo currbufnr . ": ". bufname(currbufnr)
+        let nummatches += 1
+        let firstmatchingbufnr = currbufnr
+        break
+      endif
+    endif
+    let currbufnr = currbufnr + 1
+  endwhile
+  if(nummatches >= 1)
+    execute ":sbuffer ". firstmatchingbufnr
+    startinsert
+  else
+    execute ":terminal"
+  endif
+endfunction
+map <F12> :call TermEnter()<CR>
