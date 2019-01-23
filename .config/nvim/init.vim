@@ -1,7 +1,7 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plug')
+call plug#begin('~/.config/nvim/plug')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -32,8 +32,9 @@ Plug 'sirver/UltiSnips'
 Plug 'honza/vim-snippets'
 
 Plug 'vim-latex/vim-latex'
-Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'prashanthellina/follow-markdown-links'
 
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
 Plug 'sickill/vim-monokai'
