@@ -1,7 +1,20 @@
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
+"
 call plug#begin('~/.config/nvim/plug')
+
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -69,6 +82,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
 Plug 'jalvesaq/vimcmdline'
+"Plug 'JamshedVesuna/vim-markdown-preview'
 
 "Plug 'wellle/tmux-complete.vim'
 
@@ -110,6 +124,8 @@ function WordCount()
   let v:statusmsg = s:old_status
   return s:word_count
 endfunction
+
+"let vim_markdown_preview_github=1
 
 
 "split navigations
