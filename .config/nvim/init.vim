@@ -20,12 +20,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'rust-lang/rust.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  " condensed html
 Plug 'burnettk/vim-angular'
 Plug 'tpope/vim-jdaddy'            " JSON text object
 
-Plug 'derekwyatt/vim-scala'
+Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'wannesm/wmgraphviz.vim'
 
 Plug 'vim-airline/vim-airline'
@@ -69,11 +68,16 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Yilin-Yang/vim-markbar'
 
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
+
+"Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust'
+
 Plug 'zchee/deoplete-clang'
-Plug 'wokalski/autocomplete-flow'
+"Plug 'wokalski/autocomplete-flow'
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
@@ -177,8 +181,8 @@ set timeoutlen=1000 ttimeoutlen=0
 syntax on
 
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'
+"let g:ale_sign_error = '⤫'
+"let g:ale_sign_warning = '⚠'
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
@@ -190,7 +194,6 @@ let g:deoplete#sources#jedi#python_path = 'python3'
 set completeopt+=noinsert
 set completeopt-=preview
 
-"autocmd BufReadPost * call deoplete#custom#option({ 'camel_case': v:true })
 autocmd BufReadPost * call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy', 'matcher_length', 'camel_case'])
 
 " Disable deoplete when in multi cursor mode
@@ -200,7 +203,7 @@ endfunction
 
 function! Multiple_cursors_after()
     let b:deoplete_disable_auto_complete = 0
-endfunction<Paste>
+endfunction
 
 " Enable completing of go pointers
 let g:deoplete#sources#go#pointer = 1"
@@ -215,21 +218,12 @@ set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Airline
 let g:airline#extensions#ale#enabled = 1
-
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#formatter = 'default'
-
 let g:airline#extensions#wordcount#formatter#default#fmt = '%s words'
-
 let g:airline_powerline_fonts = 1
-
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
@@ -259,18 +253,7 @@ let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
 " Folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
-"autocmd BufWrite * mkview
-"autocmd BufRead * silent loadview
-"augroup remember_folds
-"  autocmd!
-"  autocmd BufWinLeave * mkview
-"  autocmd BufWinEnter * silent! loadview
-"augroup END
-
 vnoremap <Space> zf
-" Does not make senso to highlight folded code, point is to remove it from
-" visual spam
-" highlight Folded cterm=None
 
 " scratch window is annoying and does not play nice with splits
 set completeopt-=preview
@@ -308,16 +291,27 @@ ino ( ()<left>
 " ===========================================================
 " FileType specific changes
 " ============================================================
+"
+""let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'] }
+"
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"" Or map each action separately
+"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " C
 au FileType c let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
 
+" ===========================================================
 " Rust
+" ============================================================
+
 au FileType rust let g:deoplete#sources#rust#racer_binary="/home/markus/.cargo/bin/racer"
 au FileType rust let g:deoplete#sources#rust#rust_source_path="/home/markus/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
 " Lua
-au FileType lua set omnifunc=lua_complete_omni
+"au FileType lua set omnifunc=lua_complete_omni
 
 " Javascript
 au BufRead *.js set makeprg=jslint\ %
