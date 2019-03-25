@@ -73,6 +73,7 @@ Plug 'zchee/deoplete-jedi'
 
 Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-clang'
+Plug 'Shougo/neoinclude.vim'
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
@@ -276,7 +277,7 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " FileType specific changes
 " ============================================================
 " C
-au FileType c let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
+"au FileType c let g:deoplete#sources#clang#libclang_path = "/usr/lib64/"
 
 " Javascript
 au BufRead *.js set makeprg=jslint\ %
