@@ -44,7 +44,6 @@ Plug 'sirver/UltiSnips'
 Plug 'honza/vim-snippets'
 
 Plug 'vim-latex/vim-latex'
-"Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'prashanthellina/follow-markdown-links'
 
@@ -63,7 +62,6 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-"Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Yilin-Yang/vim-markbar'
@@ -73,22 +71,14 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 
-"Plug 'rust-lang/rust.vim'
-Plug 'sebastianmarkow/deoplete-rust'
-
+Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-clang'
-"Plug 'wokalski/autocomplete-flow'
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
 Plug 'jalvesaq/vimcmdline'
-"Plug 'JamshedVesuna/vim-markdown-preview'
-
-"Plug 'wellle/tmux-complete.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -180,6 +170,9 @@ set timeoutlen=1000 ttimeoutlen=0
 
 syntax on
 
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
 " Error and warning signs.
 "let g:ale_sign_error = '⤫'
 "let g:ale_sign_warning = '⚠'
@@ -209,10 +202,6 @@ endfunction
 let g:deoplete#sources#go#pointer = 1"
 
 set hidden
-
-" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" let g:ycm_key_list_select_completion=[]
-" let g:ycm_key_list_previous_completion=[]
 
 set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -272,54 +261,28 @@ ino { {}<left>
 ino [ []<left>
 ino ( ()<left>
 
-"inoremap (      ()<Left>
-"inoremap (<CR>  (<CR>)<Esc>O
-"inoremap ((     (
-"inoremap (      ()<Left>
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['~/.local/javascript-typescript-langserver/bin/javascript-typescript-stdio'],
+    \ }
 
-
-"inoremap {      {}<Left>
-"inoremap {<CR>  {<CR>}<Esc>O
-"inoremap {     {
-"inoremap {}     {}
-"
-"inoremap [      []<Left>
-"inoremap [<CR>  [<CR>]<Esc>O
-"inoremap [     [
-"inoremap []     []
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " ===========================================================
 " FileType specific changes
 " ============================================================
-"
-""let g:LanguageClient_serverCommands = { 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'] }
-"
-"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"" Or map each action separately
-"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
 " C
 au FileType c let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
 
-" ===========================================================
-" Rust
-" ============================================================
-
-au FileType rust let g:deoplete#sources#rust#racer_binary="/home/markus/.cargo/bin/racer"
-au FileType rust let g:deoplete#sources#rust#rust_source_path="/home/markus/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-
-" Lua
-"au FileType lua set omnifunc=lua_complete_omni
-
 " Javascript
 au BufRead *.js set makeprg=jslint\ %
-" Use tab to scroll through autocomplete menus
-"autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
-"autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 autocmd filetype javascript set sw=2 ts=2 expandtab
 let g:acp_completeoptPreview=1
+
 
 " Mako/HTML
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
