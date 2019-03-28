@@ -14,6 +14,8 @@ general {
 order += "ipv6"
 order += "disk /"
 order += "disk /mnt/vm"
+order += "disk /mnt/ext-data"
+order += "disk /mnt/ext2"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
@@ -49,6 +51,12 @@ disk "/" {
   format = "%avail"
 }
 disk "/mnt/vm" {
+  format = "%avail"
+}
+disk "/mnt/ext2" {
+  format = "%avail"
+}
+disk "/mnt/ext-data" {
   format = "%avail"
 }
 
