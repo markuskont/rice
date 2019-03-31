@@ -85,6 +85,7 @@ Plug 'jalvesaq/vimcmdline'
 call plug#end()
 
 let mapleader = ','
+autocmd VimResized * wincmd =
 
 " Maintain sanity while using quickfix
 augroup quickfix
@@ -264,7 +265,7 @@ ino ( ()<left>
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['~/.local/javascript-typescript-langserver/bin/javascript-typescript-stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
