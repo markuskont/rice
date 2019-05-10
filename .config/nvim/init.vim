@@ -50,6 +50,7 @@ Plug 'prashanthellina/follow-markdown-links'
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
 Plug 'sickill/vim-monokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'vim-scripts/PaperColor.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
@@ -418,6 +419,22 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 au FileType tex set spell spelllang=en_us
 
+"" Clipboard
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+"" Get out of terminal resonably
+
 tnoremap <F12> <C-\><C-n> 
 set switchbuf+=useopen
 function! TermEnter()
@@ -445,3 +462,6 @@ function! TermEnter()
   endif
 endfunction
 map <F12> :call TermEnter()<CR>
+
+map <F7> :tabp<CR>
+map <F8> :tabn<CR>
