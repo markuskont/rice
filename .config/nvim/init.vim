@@ -14,8 +14,6 @@ endfunction
 "
 call plug#begin('~/.config/nvim/plug')
 
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
