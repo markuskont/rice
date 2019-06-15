@@ -1,0 +1,28 @@
+# Basic binds
+super + Return
+	$TERMINAL
+super + shift + Return
+	tmuxmanager
+super + shift + s
+	sshmanager
+super + d
+	dmenu_run
+super + r
+	$TERMINAL -e ranger
+super + e
+	$TERMINAL -e neomutt
+super + i
+	$TERMINAL -e htop
+super + q
+	qutebrowser
+
+# Function keys
+# Show readme
+super + F1
+  playerctl play
+super + F2
+  playerctl pause
+super + F3
+  playerctl previous
+super + F4
+  playerctl next
