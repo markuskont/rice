@@ -9,12 +9,12 @@ super + d
 	dmenu_run
 super + r
 	$TERMINAL -e ranger
-super + e
-	$TERMINAL -e neomutt
 super + i
 	$TERMINAL -e htop
 super + q
-	qutebrowser
+	$BROWSER
+super + c
+  code-oss; sleep 1;
 
 # Function keys
 # Show readme
