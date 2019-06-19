@@ -25,8 +25,6 @@ alias pbpaste='xsel --clipboard --output'
 
 alias fvim='nvim $(fzf --height 40% --reverse -m)'
 
-export WALLPAPER="~/Pictures/wallhaven-535721.jpg"
-
 bindkey -v
 
 bindkey '^P' up-history

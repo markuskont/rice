@@ -1,2 +1,5 @@
-source ~/.zshrc
+$HOME/.local/bin/
 sxhkd &
+dunst &
+compton &
+~/.local/bin/dwm-status.sh &
