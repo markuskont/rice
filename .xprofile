@@ -1,4 +1,4 @@
-$HOME/.local/bin/
+source ~/.profile
 sxhkd &
 dunst &
 compton &
