@@ -6,11 +6,9 @@ super + shift + Return
 super + shift + s
 	sshmanager
 super + d
-	dmenu_run
+	dmenu_run -l 20
 super + r
 	$TERMINAL -e ranger
-super + i
-	$TERMINAL -e htop
 super + q
 	$BROWSER
 super + c
@@ -26,3 +24,5 @@ super + F3
   playerctl previous
 super + F4
   playerctl next
+super + F5
+  mymaster
