@@ -1,5 +1,7 @@
+#!/bin/bash
 source ~/.profile
-sxhkd &
-dunst &
-compton &
+pgrep sxhkd || nohup sxhkd &
+pgrep dunsg || nohup dunst &
+pgrep compton || nohup compton &
+feh --bg-fill ~/.config/wall.pic
 ~/.local/bin/dwm-status.sh &

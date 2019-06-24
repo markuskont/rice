@@ -17,14 +17,6 @@ setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
 setopt EXTENDED_HISTORY   
 
-alias fuckit='vagrant destroy -f && vagrant up'
-alias zzz='systemctl suspend'
-
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-
-alias fvim='nvim $(fzf --height 40% --reverse -m)'
-
 bindkey -v
 
 bindkey '^P' up-history
@@ -101,7 +93,10 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(
   git
   vi-mode
+  zsh-autosuggestions
+  zsh-completions
 )
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,5 +128,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#
+source $HOME/.zprofile
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
