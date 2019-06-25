@@ -1,4 +1,11 @@
 [submodule "st"]
 	path = st
-	url = https://github.com:markuskont/st.git
+	url = https://github.com/markuskont/st
 	branch = 0.8.1-dracula
+[submodule "rust-dwm-status"]
+	path = rust-dwm-status
+	url = https://github.com/markuskont/rust-dwm-status
+[submodule "dwm"]
+	path = dwm
+	url = https://github.com/markuskont/dwm
+	branch = modded
