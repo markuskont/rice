@@ -1,4 +1,4 @@
 [submodule "st"]
 	path = st
-	url = git@github.com:markuskont/st.git
+	url = https://github.com:markuskont/st.git
 	branch = 0.8.1-dracula
