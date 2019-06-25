@@ -1,4 +1,0 @@
-#!/bin/bash
-
-SESSION=$(tmux ls | dmenu -i -l 20 -fn hack | cut -d":" -f1)
-st tmux a -t $SESSION -d
