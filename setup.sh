@@ -70,7 +70,7 @@ if $GUI; then
   make build && make install-tools
 fi
 
-if $DM; then make install-dwm-ldm ; fi
+if $DM; then sudo make install-dwm-ldm ; fi
 
 echo "Configuring neovim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
