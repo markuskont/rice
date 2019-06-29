@@ -1,4 +1,6 @@
 #!/bin/bash
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export QT_QPA_PLATFORMTHEME=gtk2
 source ~/.profile
 pgrep sxhkd || nohup sxhkd &
 pgrep dunsg || nohup dunst &
