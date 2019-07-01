@@ -68,6 +68,7 @@ if $GUI; then
   echo "Building DWM and ST"
   git submodule update --init --recursive
   make build && make install-tools
+  cd rust-dwm-status/ && cargo install --path ./ --force
 fi
 
 if $DM; then sudo make install-dwm-ldm ; fi
