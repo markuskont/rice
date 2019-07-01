@@ -4,6 +4,8 @@ import glob
 import os
 from subprocess import Popen, PIPE, STDOUT
 
+HOME = os.environ['HOME']
+
 class Steam(object):
     def __init__(self, raw):
         self.Name = raw[0].split("=")[1]
@@ -15,16 +17,47 @@ class Steam(object):
     def map(self):
         return {self.Name: self.Command}
 
+    def subprocess_command(self):
+        return self.Command.split()
+
 def readSteamNameAndExec(shortcut: str):
     with open(shortcut, 'rb') as f:
         data = f.read().decode("utf-8").split("\n")
         data = [d for d in data if "Exec=" in d or "Name=" in d]
     return Steam(data)
 
-HOME = os.environ['HOME']
+def steamDataPath():
+    return "{}/.local/share/Steam/steamapps/common/".format(HOME)
+
+def gzDoomCmd(game, wad: str):
+    return ["gzdoom", "-iwad", "{}/{}/base/{}".format(steamDataPath(), game, wad)]
+
+def gzBrutalDoom():
+    return [
+            "-file",
+            "{}/.local/brutaldoom/brutalv21.pk3".format(HOME)
+        ]
+
+def gzDoom(games: dict):
+    games["Heretic: Shadow of the Serpent Riders"] = gzDoomCmd(
+        "Heretic Shadow of the Serpent Riders",
+        "HERETIC.WAD")
+    games["HeXen: Beyond Heretic"] = gzDoomCmd(
+        "Hexen",
+        "HEXEN.WAD")
+    games["Brutal Doom I"] = gzDoomCmd(
+        "Ultimate Doom",
+        "DOOM.WAD") + gzBrutalDoom()
+    games["Brutal Doom II"] = gzDoomCmd(
+        "Doom 2",
+        "DOOM2.WAD") + gzBrutalDoom()
+    return games
+
 STEAM = glob.glob("{}/Desktop/*.desktop".format(HOME))
 STEAM = [readSteamNameAndExec(d) for d in STEAM]
-STEAM = {d.Name: d.Command for d in STEAM}
+STEAM = {d.Name: d.subprocess_command() for d in STEAM}
+STEAM = gzDoom(STEAM)
+
 keys = list(STEAM.keys())
 keys = "\n".join(keys).encode()
 
@@ -32,4 +65,4 @@ p = Popen(['dmenu', '-l', "20", "-i"], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 out = p.communicate(input=keys)[0]
 out = out.decode().strip()
 
-Popen(STEAM[out].split())
+Popen(STEAM[out])
