@@ -8,4 +8,4 @@
 [submodule "dwm"]
 	path = dwm
 	url = https://github.com/markuskont/dwm
-	branch = modded
+	branch = 6.2-modded
