@@ -2,7 +2,13 @@
 # Aurorice
 # Work in progress, missing dependencies etc
 
+WALLPAPER="https://w.wallhaven.cc/full/13/wallhaven-13x79v.jpg"
+
 DM=false
+ENV_SETUP=false
+CODE=true
+GUI=true
+
 read -p "Set up display manager? (y/n)?" choice
 case "$choice" in 
   y|Y ) DM=true;;
@@ -10,7 +16,6 @@ case "$choice" in
   * ) echo "invalid choice"; exit 1;;
 esac
 
-ENV_SETUP=false
 read -p "Install environment and config files? Will overwrite any existing profile and ~/.config files!!! (y/n)?" choice
 case "$choice" in 
   y|Y ) ENV_SETUP=true;;
@@ -18,9 +23,7 @@ case "$choice" in
   * ) echo "invalid choice"; exit 1;;
 esac
 
-# make optional later
-CODE=true
-GUI=true
+source ./.profile
 
 echo "Installing deps"
 if [ -f "/etc/arch-release" ]; then
@@ -40,7 +43,6 @@ if [ -f "/etc/arch-release" ]; then
 fi
 
 echo "Setting up zsh"
-source ./.profile
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -74,6 +76,7 @@ if $GUI; then
   if $CODE; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
+  wget -4 -q $WALLPAPER -O ~/.config/wall.pic
 fi
 
 if $DM; then 
