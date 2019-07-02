@@ -70,12 +70,18 @@ if $GUI; then
   echo "Building DWM and ST"
   git submodule update --init --recursive
   make build && make install-tools
-  cd rust-dwm-status/ && cargo install --path ./ --force
+  if $CODE; then
+    cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
+  fi
 fi
 
-if $DM; then sudo make install-dwm-ldm ; fi
+if $DM; then 
+  echo "Setting up lightdm"
+  sudo make install-dwm-ldm
+fi
 
 echo "Configuring neovim"
+python -m pip install --user --upgrade neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qa
