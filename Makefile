@@ -9,6 +9,7 @@ install-env:
 install-configs:
 	rsync -va ./.config/ ~/.config/
 install-dwm-ldm:
+	mkdir -p /usr/share/xsessions
 	cp -f lightdm/dwm.desktop /usr/share/xsessions/
 	cp -f lightdm/lightdm.conf /etc/lightdm/
 	cp -f lightdm/lightdm-mini-greeter.conf /etc/lightdm/

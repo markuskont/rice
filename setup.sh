@@ -81,7 +81,7 @@ if $DM; then
   git clone https://aur.archlinux.org/lightdm-mini-greeter.git /tmp/mini-greeter ; cd /tmp/mini-greeter ; makepkg -si
   cd -
   sudo make install-dwm-ldm
-  sed -i "s,USER,$(whoami),g" /etc/lightdm/lightdm-mini-greeter.conf
+  sudo sed -i "s,USER,$(whoami),g" /etc/lightdm/lightdm-mini-greeter.conf
   sudo systemctl enable lightdm.service
 fi
 
