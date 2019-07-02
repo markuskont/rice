@@ -41,13 +41,20 @@ if [ -f "/etc/arch-release" ]; then
   pkgs="neovim tmux zsh yarn make htop"
   # TODO - headless vs gui setup
   if $GUI; then
-    pkgs+=" base-devel cmake dmenu sxhkd compton dunst rofi feh ranger qutebrowser firefox-developer-edition extra/ttf-hack xorg-server xorg-xinit numix-gtk-theme"
+    pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
+    pkgs+=" xorg-server xorg-xinit"
+    pkgs+=" base-devel cmake"
+    pkgs+=" qutebrowser firefox-developer-edition"
+    pkgs+=" extra/ttf-hack numix-gtk-theme"
+    pkgs+=" openbox"
   fi
   if $DM; then 
     pkgs+=" lightdm" 
   fi
   if $CODE; then 
-    pkgs+=" go nodejs npm python python-pip" 
+    pkgs+=" go"
+    pkgs+=" nodejs npm"
+    pkgs+=" python python-pip" 
   fi
   echo $pkgs
   sudo pacman --needed --noconfirm -Syyu $pkgs
