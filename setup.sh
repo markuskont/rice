@@ -91,7 +91,7 @@ if $GUI; then
   if $RDP; then
     git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si
     git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si
-    sudo echo "allowed_users=anybody" > /etc/X11/Xwrapper.config
+    sudo bash -c "echo \"allowed_users=anybody\" > /etc/X11/Xwrapper.config"
     sudo systemctl enable xrdp.service
     sudo systemctl enable xrdp-sesman.service
   fi
