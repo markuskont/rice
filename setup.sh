@@ -9,9 +9,16 @@ ENV_SETUP=false
 CODE=true
 GUI=true
 RDP=false
-
+TERM_COLOR="dracula"
 
 if $GUI; then
+  read -p "Please select terminal build? (1 - dracula, 2 - darker)?" choice
+  case "$choice" in 
+    1 ) TERM_COLOR="dracula";;
+    2 ) TERM_COLOR="darker";;
+    * ) echo "invalid choice"; exit 1;;
+  esac
+
   read -p "Set up display manager? (y/n)?" choice
   case "$choice" in 
     y|Y ) DM=true;;
@@ -89,6 +96,12 @@ fi
 if $GUI; then
   echo "Building DWM and ST"
   git submodule update --init --recursive
+
+  case $TERM_COLOR in
+    "dracula" ) cd st && git checkout origin/0.8.1-dracula && cd .. ;;
+    "darker" ) cd st && git checkout origin/0.8.1-darker && cd .. ;;
+  esac
+
   make build || exit 1
   make install-tools
   if $CODE; then
