@@ -9,6 +9,7 @@ case "$choice" in
   n|N ) DM=false;;
   * ) echo "invalid choice"; exit 1;;
 esac
+
 ENV_SETUP=false
 read -p "Install environment and config files? Will overwrite any existing profile and ~/.config files!!! (y/n)?" choice
 case "$choice" in 
@@ -16,16 +17,17 @@ case "$choice" in
   n|N ) ENV_SETUP=false;;
   * ) echo "invalid choice"; exit 1;;
 esac
+
 # make optional later
 CODE=true
 GUI=true
 
 echo "Installing deps"
 if [ -f "/etc/arch-release" ]; then
-  pkgs="neovim tmux zsh yarn"
+  pkgs="neovim tmux zsh yarn make"
   # TODO - headless vs gui setup
   if $GUI; then
-    pkgs+=" cmake dmenu sxhkd compton dunst extra/ttf-hack"
+    pkgs+=" cmake dmenu sxhkd compton dunst rofi extra/ttf-hack"
   fi
   if $DM; then 
     pkgs+=" lightdm" 
