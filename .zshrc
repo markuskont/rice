@@ -2,6 +2,7 @@
 #setopt inc_append_history
 #setopt share_history
 #export SAVEHIST=1500
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff"
 export KEYTIMEOUT=1
 
 #set history size
