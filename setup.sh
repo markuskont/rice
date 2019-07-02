@@ -78,7 +78,7 @@ fi
 
 if $DM; then 
   echo "Setting up lightdm"
-  cd /tmp && git clone https://aur.archlinux.org/lightdm-mini-greeter.git && makepkg -si
+  git clone https://aur.archlinux.org/lightdm-mini-greeter.git /tmp/mini-greeter && cd /tmp/mini-greeter && makepkg -si
   cd -
   sudo make install-dwm-ldm
   sed -i "s,USER,$(whoami),g" /etc/lightdm/lightdm-mini-greeter.conf
