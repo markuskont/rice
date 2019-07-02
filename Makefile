@@ -6,7 +6,7 @@ install-tools:
 	cp -f ./st/st ./dwm/dwm ~/.local/bin
 	cp -f ./.local/bin/dwm-status.sh ~/.local/bin
 install-env:
-	cp .xinitrc .tmux.conf .zshrc .Xresources .xprofile .profile .zprofile ~/
+	cp .gtkrc-2.0 .xinitrc .tmux.conf .zshrc .Xresources .xprofile .profile .zprofile ~/
 install-configs:
 	rsync -va ./.config/ ~/.config/
 install-dwm-ldm:
