@@ -27,7 +27,7 @@ if [ -f "/etc/arch-release" ]; then
   pkgs="neovim tmux zsh yarn make"
   # TODO - headless vs gui setup
   if $GUI; then
-    pkgs+=" cmake dmenu sxhkd compton dunst rofi extra/ttf-hack"
+    pkgs+=" pkg-config gcc cmake dmenu sxhkd compton dunst rofi extra/ttf-hack"
   fi
   if $DM; then 
     pkgs+=" lightdm" 
