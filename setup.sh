@@ -36,7 +36,7 @@ if [ -f "/etc/arch-release" ]; then
     pkgs+=" go nodejs npm python python-pip" 
   fi
   echo $pkgs
-  sudo pacman --needed -Sy $pkgs
+  sudo pacman --needed --noconfirm -Syyu $pkgs
 fi
 
 echo "Setting up zsh"
@@ -69,7 +69,8 @@ fi
 if $GUI; then
   echo "Building DWM and ST"
   git submodule update --init --recursive
-  make build && make install-tools
+  make build || exit 1
+  make install-tools
   if $CODE; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
