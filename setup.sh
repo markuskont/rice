@@ -8,13 +8,24 @@ DM=false
 ENV_SETUP=false
 CODE=true
 GUI=true
+RDP=false
 
-read -p "Set up display manager? (y/n)?" choice
-case "$choice" in 
-  y|Y ) DM=true;;
-  n|N ) DM=false;;
-  * ) echo "invalid choice"; exit 1;;
-esac
+
+if $GUI; then
+  read -p "Set up display manager? (y/n)?" choice
+  case "$choice" in 
+    y|Y ) DM=true;;
+    n|N ) DM=false;;
+    * ) echo "invalid choice"; exit 1;;
+  esac
+  
+  read -p "Set up xRDP? (y/n)?" choice
+  case "$choice" in 
+    y|Y ) RDP=true;;
+    n|N ) RDP=false;;
+    * ) echo "invalid choice"; exit 1;;
+  esac
+fi
 
 read -p "Install environment and config files? Will overwrite any existing profile and ~/.config files!!! (y/n)?" choice
 case "$choice" in 
@@ -77,6 +88,13 @@ if $GUI; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
   curl -fLo ~/.config/wall.pic $WALLPAPER
+  if $RDP; then
+    git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si
+    git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si
+    sudo echo "allowed_users=anybody" > /etc/X11/Xwrapper.config
+    sudo systemctl enable xrdp.service
+    sudo systemctl enable xrdp-sesman.service
+  fi
 fi
 
 if $DM; then 
