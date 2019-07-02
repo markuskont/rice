@@ -4,6 +4,7 @@ build:
 install-tools:
 	mkdir -p ~/.local/bin
 	cp -f ./st/st ./dwm/dwm ~/.local/bin
+	cp -f ./.local/bin/dwm-status.sh ~/.local/bin
 install-env:
 	cp .xinitrc .tmux.conf .zshrc .Xresources .xprofile .profile .zprofile ~/
 install-configs:
