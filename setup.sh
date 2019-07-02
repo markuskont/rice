@@ -76,7 +76,7 @@ if $GUI; then
   if $CODE; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
-  wget -4 -q $WALLPAPER -O ~/.config/wall.pic
+  curl -fLo ~/.config/wall.pic $WALLPAPER
 fi
 
 if $DM; then 
