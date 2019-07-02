@@ -6,13 +6,15 @@ super + shift + Return
 super + shift + s
 	sshmanager
 super + d
-	dmenu_run -l 20
+	dmenu_run -l 20 -fn "hack 9"
 super + r
 	$TERMINAL -e ranger
 super + q
 	$BROWSER
 super + c
   code-oss; sleep 1;
+super + s
+  rofi -show window
 
 # Function keys
 # Show readme
