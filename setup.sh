@@ -72,6 +72,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+git submodule update --init --recursive
 if $ENV_SETUP; then
   make install-env
   make install-configs
@@ -95,7 +96,6 @@ fi
 
 if $GUI; then
   echo "Building DWM and ST"
-  git submodule update --init --recursive
 
   case $TERM_COLOR in
     "dracula" ) cd st && git checkout origin/0.8.1-dracula && cd .. ;;

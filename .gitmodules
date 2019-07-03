@@ -8,3 +8,6 @@
 	path = dwm
 	url = https://github.com/markuskont/dwm
 	branch = 6.2-modded
+[submodule ".config/rofi/themes/gruvbox"]
+	path = .config/rofi/themes/gruvbox
+	url = https://github.com/bardisty/gruvbox-rofi

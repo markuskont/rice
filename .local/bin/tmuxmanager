@@ -1,4 +1,4 @@
 #!/bin/bash
 
-SESSION=$(tmux ls | dmenu -i -l 20 -fn hack | cut -d":" -f1)
+SESSION=$(tmux ls | dmenu -i -l 20 -fn "hack 9" -sb "#444444"| cut -d":" -f1)
 st tmux a -t $SESSION -d

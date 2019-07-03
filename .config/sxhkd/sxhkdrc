@@ -6,7 +6,7 @@ super + shift + Return
 super + shift + s
 	sshmanager
 super + d
-	dmenu_run -l 20 -fn "hack 9"
+	rofi -show run
 super + r
 	$TERMINAL -e ranger
 super + q
