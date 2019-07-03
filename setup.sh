@@ -104,6 +104,10 @@ if $GUI; then
 
   make build || exit 1
   make install-tools
+
+  sed -i "s,MYPATH,$PATH,g" ~/.config/systemd/user/sxhkd.service
+  systemctl --user daemon-reload
+
   if $CODE; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
