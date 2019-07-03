@@ -1,20 +1,20 @@
 # Basic binds
 super + Return
-	$TERMINAL
+  $TERMINAL
 super + shift + Return
-	tmuxmanager
-super + shift + s
-	sshmanager
+  tmuxmanager
+super + a
+  rofi -show window
+super + s
+  rofi -show ssh
 super + d
-	rofi -show run
+  rofi -show run
 super + r
-	$TERMINAL -e ranger
+  $TERMINAL -e ranger
 super + q
-	$BROWSER
+  $BROWSER
 super + c
   code-oss; sleep 1;
-super + s
-  rofi -show window
 
 # Function keys
 # Show readme
