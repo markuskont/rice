@@ -2,7 +2,7 @@
 # Aurorice
 # Work in progress, missing dependencies etc
 
-WALLPAPER="https://w.wallhaven.cc/full/13/wallhaven-13x79v.jpg"
+WALLPAPER="https://w.wallhaven.cc/full/r2/wallhaven-r2opq1.jpg"
 
 DM=false
 ENV_SETUP=false
