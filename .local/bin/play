@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE, STDOUT
 
 HOME = os.environ['HOME']
 
-class Steam(object):
+class Steam():
     def __init__(self, raw):
         self.Name = raw[0].split("=")[1]
         self.Command = raw[1].split("=")[1]
@@ -34,9 +34,9 @@ def gzDoomCmd(game, wad: str):
 
 def gzBrutalDoom():
     return [
-            "-file",
-            "{}/.local/brutaldoom/brutalv21.pk3".format(HOME)
-        ]
+        "-file",
+        "{}/.local/brutaldoom/brutalv21.pk3".format(HOME)
+    ]
 
 def gzDoom(games: dict):
     games["Heretic: Shadow of the Serpent Riders"] = gzDoomCmd(
@@ -61,7 +61,9 @@ STEAM = gzDoom(STEAM)
 keys = list(STEAM.keys())
 keys = "\n".join(keys).encode()
 
-p = Popen(['dmenu', '-l', "20", "-i"], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+p = Popen(['dmenu', '-i', '-l', "20", "-fn", "hack 9", "-sb", "#444444"],
+          stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+
 out = p.communicate(input=keys)[0]
 out = out.decode().strip()
 
