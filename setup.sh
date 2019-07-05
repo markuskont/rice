@@ -5,20 +5,19 @@
 WALLPAPER="https://w.wallhaven.cc/full/13/wallhaven-13x79v.jpg"
 
 DM=false
-ENV_SETUP=false
+ENV_SETUP=true
 CODE=true
-GUI=true
+GUI=false
 RDP=false
-TERM_COLOR="dracula"
+
+read -p "Headless system? (y/n)?" choice
+case "$choice" in 
+  y|Y ) GUI=false;;
+  n|N ) GUI=true;;
+  * ) echo "invalid choice"; exit 1;;
+esac
 
 if $GUI; then
-  read -p "Please select terminal build? (1 - dracula, 2 - darker)?" choice
-  case "$choice" in 
-    1 ) TERM_COLOR="dracula";;
-    2 ) TERM_COLOR="darker";;
-    * ) echo "invalid choice"; exit 1;;
-  esac
-
   read -p "Set up display manager? (y/n)?" choice
   case "$choice" in 
     y|Y ) DM=true;;
@@ -34,19 +33,12 @@ if $GUI; then
   esac
 fi
 
-read -p "Install environment and config files? Will overwrite any existing profile and ~/.config files!!! (y/n)?" choice
-case "$choice" in 
-  y|Y ) ENV_SETUP=true;;
-  n|N ) ENV_SETUP=false;;
-  * ) echo "invalid choice"; exit 1;;
-esac
-
 source ./.profile
+git submodule update --init --recursive
 
-echo "Installing deps"
+echo "Installing software"
 if [ -f "/etc/arch-release" ]; then
   pkgs="neovim tmux zsh yarn make htop"
-  # TODO - headless vs gui setup
   if $GUI; then
     pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
     pkgs+=" xorg-server xorg-xinit"
@@ -67,12 +59,11 @@ if [ -f "/etc/arch-release" ]; then
   sudo pacman --needed --noconfirm -Syyu $pkgs
 fi
 
-echo "Setting up zsh"
+echo "Setting up shell"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-git submodule update --init --recursive
 if $ENV_SETUP; then
   make install-env
   make install-configs
@@ -96,11 +87,6 @@ fi
 
 if $GUI; then
   echo "Building DWM and ST"
-
-  case $TERM_COLOR in
-    "dracula" ) cd st && git checkout origin/0.8.1-dracula && cd .. ;;
-    "darker" ) cd st && git checkout origin/0.8.1-darker && cd .. ;;
-  esac
 
   make build || exit 1
   make install-tools
