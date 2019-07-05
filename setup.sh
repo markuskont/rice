@@ -1,5 +1,5 @@
 #!/bin/bash
-# Aurorice
+# autorice
 # Work in progress, missing dependencies etc
 
 # Script options
@@ -66,7 +66,7 @@ mv $HOME/.oh-my-zsh $HOME/.oh-my-zsh.bak
 sh -c "$(curl ${CURL_OTPS} -fsSL  https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-chsh "zsh"
+sudo usermod -s "/bin/zsh" $(whoami)
 
 source ./.profile
 if $ENV_SETUP; then
