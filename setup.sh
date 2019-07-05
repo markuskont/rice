@@ -84,7 +84,7 @@ fi
 
 echo "Configuring rust"
 if $CODE; then
-  curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  sh -c "$(curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y"
   command -v rg || cargo install --force ripgrep
   command -v exa || cargo install --force exa
   rustup component add rls rust-analysis rust-src
