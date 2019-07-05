@@ -33,7 +33,6 @@ if $GUI; then
   esac
 fi
 
-source ./.profile
 git submodule update --init --recursive
 
 echo "Installing software"
@@ -64,6 +63,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+source ./.profile
 if $ENV_SETUP; then
   make install-env
   make install-configs
