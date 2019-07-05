@@ -4,6 +4,7 @@
 
 # Script options
 CURL_OTPS="--retry 5 --retry-delay 2 --retry-max-time 60"
+AUR_OPTS="--noconfirm"
 
 WALLPAPER="https://w.wallhaven.cc/full/r2/wallhaven-r2opq1.jpg"
 
@@ -104,8 +105,8 @@ if $GUI; then
   fi
   curl $CURL_OTPS -fLo ~/.config/wall.pic $WALLPAPER
   if $RDP; then
-    git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si
-    git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si
+    git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si $AUR_OPTS
+    git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si $AUR_OPTS
     sudo bash -c "echo \"allowed_users=anybody\" > /etc/X11/Xwrapper.config"
     sudo systemctl enable xrdp.service
     sudo systemctl enable xrdp-sesman.service
@@ -114,7 +115,7 @@ fi
 
 if $DM; then 
   echo "Setting up lightdm"
-  git clone https://aur.archlinux.org/lightdm-mini-greeter.git /tmp/mini-greeter ; cd /tmp/mini-greeter ; makepkg -si
+  git clone https://aur.archlinux.org/lightdm-mini-greeter.git /tmp/mini-greeter ; cd /tmp/mini-greeter ; makepkg -si $AUR_OPTS
   cd -
   sudo make install-dwm-ldm
   sudo sed -i "s,USER,$(whoami),g" /etc/lightdm/lightdm-mini-greeter.conf
