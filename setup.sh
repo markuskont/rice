@@ -2,6 +2,9 @@
 # Aurorice
 # Work in progress, missing dependencies etc
 
+# Script options
+CURL_OTPS="--retry 5 --retry-delay 2 --retry-max-time 60"
+
 WALLPAPER="https://w.wallhaven.cc/full/r2/wallhaven-r2opq1.jpg"
 
 DM=false
@@ -60,7 +63,7 @@ fi
 
 echo "Setting up shell"
 mv $HOME/.oh-my-zsh $HOME/.oh-my-zsh.bak
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl ${CURL_OTPS} -fsSL  https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -80,7 +83,7 @@ fi
 
 echo "Configuring rust"
 if $CODE; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   command -v rg || cargo install --force ripgrep
   command -v exa || cargo install --force exa
   rustup component add rls rust-analysis rust-src
@@ -98,7 +101,7 @@ if $GUI; then
   if $CODE; then
     cd rust-dwm-status/ && cargo install --path ./ --force ; cd ..
   fi
-  curl -fLo ~/.config/wall.pic $WALLPAPER
+  curl $CURL_OTPS -fLo ~/.config/wall.pic $WALLPAPER
   if $RDP; then
     git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si
     git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si
@@ -119,7 +122,7 @@ fi
 
 echo "Configuring neovim"
 python -m pip install --user --upgrade neovim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+curl $CURL_OTPS -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qa
 if $CODE; then
