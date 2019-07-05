@@ -41,10 +41,10 @@ git submodule update --init --recursive
 echo "Installing software"
 if [ -f "/etc/arch-release" ]; then
   pkgs="neovim tmux zsh yarn make htop"
+  pkgs+=" base-devel cmake"
   if $GUI; then
     pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
     pkgs+=" xorg-server xorg-xinit"
-    pkgs+=" base-devel cmake"
     pkgs+=" qutebrowser firefox-developer-edition"
     pkgs+=" extra/ttf-hack numix-gtk-theme"
     pkgs+=" openbox"
@@ -84,7 +84,7 @@ fi
 
 echo "Configuring rust"
 if $CODE; then
-  sh -c "$(curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y"
+  curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s - -y
   command -v rg || cargo install --force ripgrep
   command -v exa || cargo install --force exa
   rustup component add rls rust-analysis rust-src
