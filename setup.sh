@@ -47,7 +47,7 @@ if [ -f "/etc/arch-release" ]; then
     pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
     pkgs+=" xorg-server xorg-xinit"
     pkgs+=" qutebrowser firefox-developer-edition"
-    pkgs+=" extra/ttf-hack numix-gtk-theme"
+    pkgs+=" extra/ttf-hack numix-gtk-theme qt5-styleplugins"
     pkgs+=" openbox"
   fi
   if $DM; then 
