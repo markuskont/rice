@@ -9,6 +9,8 @@ super + s
   rofi -show ssh
 super + d
   rofi -show run
+super + shift + d
+  rofi -show drun
 super + r
   $TERMINAL -e ranger
 super + q
