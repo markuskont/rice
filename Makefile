@@ -15,3 +15,8 @@ install-dwm-ldm:
 	cp -f lightdm/dwm.desktop /usr/share/xsessions/
 	cp -f lightdm/lightdm.conf /etc/lightdm/
 	cp -f lightdm/lightdm-mini-greeter.conf /etc/lightdm/
+install-user-conf:
+	$(MAKE) install-env
+	$(MAKE) install-configs
+install-system-conf:
+	$(MAKE) install-dwm-ldm
