@@ -1,4 +1,5 @@
 $SHELL = <<SCRIPT
+pacman -Syyu --noconfirm
 pacman -Syyu --noconfirm git rsync
 git clone --recurse https://github.com/markuskont/rice /home/vagrant/rice
 chown -R vagrant:vagrant /home/vagrant/rice
