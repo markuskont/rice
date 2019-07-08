@@ -20,13 +20,17 @@ super + c
 
 # Function keys
 # Show readme
-super + F1
-  playerctl play
-super + F2
-  playerctl pause
-super + F3
-  playerctl previous
-super + F4
-  playerctl next
 super + F5
   mymaster
+
+# Media keys
+XF86AudioPlay
+  playerctl play-pause
+XF86AudioNext
+  playerctl next
+XF86AudioPrev
+	playerctl previous
+XF86AudioLowerVolume
+  pactl set-sink-volume 0 -5%
+XF86AudioRaiseVolume
+  pactl set-sink-volume 0 +5%
