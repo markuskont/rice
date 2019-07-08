@@ -30,6 +30,14 @@ function install_zsh() {
   sudo usermod -s "/bin/zsh" $(whoami)
 }
 
+function check_wsl() {
+  if grep -q Microsoft /proc/version; then
+    WSL=true
+  else
+    WSL=false
+  fi
+}
+
 read -p "GUI system? (y/n)?" choice
 case "$choice" in 
   y|Y ) GUI=true;;
