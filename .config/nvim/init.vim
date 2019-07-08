@@ -77,8 +77,12 @@ call plug#end()
 if !empty($VIM_COLOR)
   colorscheme $VIM_COLOR
 else
-  set background=dark
-  colorscheme gruvbox
+  try 
+    colorscheme gruvbox
+    set background=dark
+  catch
+
+  endtry
 endif
 
 " play nice with tiling window manager splits
