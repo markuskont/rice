@@ -13,6 +13,7 @@ ENV_SETUP=true
 CODE=true
 GUI=false
 RDP=false
+HYPERV=false
 
 SESSIONS=( "dwm" "openbox-session" )
 WM=""
@@ -62,8 +63,15 @@ if $GUI; then
   
   read -p "Set up xRDP? (y/n)?" choice
   case "$choice" in 
-    y|Y ) RDP=true;;
-    n|N ) RDP=false;;
+    y|Y ) 
+      RDP=true
+      read -p "Hyper-v enhanced session? (y/n)" choice
+      case "$choice" in
+        y|Y ) HYPERV=true;;
+        n|N ) HYPERV=false;;
+      esac
+      ;;
+    n|N ) RDP=false ;;
     * ) echo "invalid choice"; exit 1;;
   esac
 fi
@@ -145,11 +153,20 @@ if $GUI; then
   fi
   curl $CURL_OTPS -fLo ~/.config/wall.pic $WALLPAPER
   if $RDP; then
-    git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si $AUR_OPTS
-    git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si $AUR_OPTS
-    sudo bash -c "echo \"allowed_users=anybody\" > /etc/X11/Xwrapper.config"
-    sudo systemctl enable xrdp.service
-    sudo systemctl enable xrdp-sesman.service
+    if $HYPERV; then
+      git clone https://github.com/Microsoft/linux-vm-tools.git /tmp/linux-vm-tools
+      cd /tmp/linux-vm-tools/arch
+      makepkg -si $AUR_OPTS
+      sudo $(pwd)/install.sh
+      cd -
+    else
+      git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si $AUR_OPTS
+      git clone https://aur.archlinux.org/xorgxrdp-git.git /tmp/xorgxrdp ; cd /tmp/xorgxrdp ; makepkg -si $AUR_OPTS
+      sudo bash -c "echo \"allowed_users=anybody\" > /etc/X11/Xwrapper.config"
+      sudo systemctl enable xrdp.service
+      sudo systemctl enable xrdp-sesman.service
+      cd -
+    fi
   fi
 fi
 
