@@ -203,46 +203,42 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Left">
+    <keybind key="W-S-1">
       <action name="SendToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
+        <to>1</to>
       </action>
     </keybind>
-    <keybind key="S-A-Right">
+    <keybind key="W-S-2">
       <action name="SendToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
+        <to>2</to>
       </action>
     </keybind>
-    <keybind key="S-A-Up">
+    <keybind key="W-S-3">
       <action name="SendToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
+        <to>3</to>
       </action>
     </keybind>
-    <keybind key="S-A-Down">
+    <keybind key="W-S-4">
       <action name="SendToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
+        <to>4</to>
       </action>
     </keybind>
-    <keybind key="W-F1">
+    <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="W-F2">
+    <keybind key="W-2">
       <action name="GoToDesktop">
         <to>2</to>
       </action>
     </keybind>
-    <keybind key="W-F3">
+    <keybind key="W-3">
       <action name="GoToDesktop">
         <to>3</to>
       </action>
     </keybind>
-    <keybind key="W-F4">
+    <keybind key="W-4">
       <action name="GoToDesktop">
         <to>4</to>
       </action>
@@ -265,6 +261,18 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
+    <keybind key="W-j">
+      <action name="NextWindow"/>
+      <action name="Focus"/>
+      <action name="Raise"/>
+      <action name="Unshade"/>
+    </keybind>
+    <keybind key="W-k">
+      <action name="PreviousWindow"/>
+      <action name="Focus"/>
+      <action name="Raise"/>
+      <action name="Unshade"/>
+    </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow">
         <finalactions>
