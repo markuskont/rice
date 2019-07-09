@@ -81,6 +81,9 @@ git submodule update --init --recursive
 echo "Installing base software"
 pkgs="neovim tmux zsh yarn make htop"
 pkgs+=" base-devel cmake"
+if $HYPERV; then
+  pkgs+=" xf86-video-fbdev"
+fi
 if $GUI; then
   pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
   pkgs+=" xorg-server xorg-xinit"
