@@ -159,8 +159,8 @@ if $GUI; then
     if $HYPERV; then
       git clone https://github.com/Microsoft/linux-vm-tools.git /tmp/linux-vm-tools
       cd /tmp/linux-vm-tools/arch
-      makepkg -si $AUR_OPTS
-      sudo $(pwd)/install.sh
+      bash -c $(pwd)/makepkg.sh
+      sudo $(pwd)/install-config.sh
       cd -
     else
       git clone https://aur.archlinux.org/xrdp.git /tmp/xrdp ; cd /tmp/xrdp ; makepkg -si $AUR_OPTS
