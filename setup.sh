@@ -79,15 +79,27 @@ fi
 git submodule update --init --recursive
 
 echo "Installing base software"
-pkgs="neovim tmux zsh yarn make htop"
+pkgs=""
+# core utils
+pkgs+=" htop git rsync"
+# building C deps
 pkgs+=" base-devel cmake"
+# neovim + yarn for coc.vim
+pkgs+=" neovim yarn"
+# shell tools
+pkgs+=" tmux zsh"
 if $HYPERV; then
+  # driver for non-enhanced session
   pkgs+=" xf86-video-fbdev"
 fi
 if $GUI; then
+  # minimal gui tools
   pkgs+=" dmenu sxhkd compton dunst rofi feh ranger"
+  # xserver stuff
   pkgs+=" xorg-server xorg-xinit"
+  # browsers
   pkgs+=" qutebrowser firefox-developer-edition"
+  # gtk/qt styling
   pkgs+=" extra/ttf-hack numix-gtk-theme qt5-styleplugins"
   case $WM in
     ${SESSIONS[0]} )
