@@ -65,6 +65,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Golang
 Plug 'fatih/vim-go'
