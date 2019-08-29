@@ -78,20 +78,17 @@ call plug#end()
 if !empty($VIM_COLOR)
   colorscheme $VIM_COLOR
 else
-  try 
-    colorscheme gruvbox
-    set background=dark
-  catch
-
-  endtry
+  set background=dark
+  colorscheme gruvbox
 endif
 
 " play nice with tiling window manager splits
 autocmd VimResized * wincmd =
 
-" Cool bindings
-map <F7> :tabp<CR>
-map <F8> :tabn<CR>
+" Some vim bindings were made with english keyboard layout in mind
+" Jump paragraph is really awkward with Estonian keyboard (AltGr+7,AlgGr+0)
+map ü {(
+map õ })
 
 tnoremap <F12> <C-\><C-n> 
 map <F12> :call TermEnter()<CR>
@@ -232,7 +229,7 @@ au FileType go nmap <leader>t  <Plug>(go-test)
 
 au FileType go nmap <leader>a :GoAlternate<CR>
 au FileType go nmap <leader>d :GoDoc<CR>
-au FileType go nmap <leader>r :GoReplace<CR>
+au FileType go nmap <leader>r :GoReferrers<CR>
 au FileType go nmap <leader>id :GoSameIds<CR>
 au FileType go nmap <leader>idc :GoSameIdsClear<CR>
 au FileType go nmap <leader>gt :GoDeclsDir<cr>
