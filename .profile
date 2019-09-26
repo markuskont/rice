@@ -1,10 +1,12 @@
 export PATH="$HOME/.local/bin:$PATH"
 export TERMINAL=st
-export BROWSER=qutebrowser
+export BROWSER=firefox-developer-edition
 export EDITOR=nvim
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH="$HOME/.gem/ruby/2.6.0/bin/:$PATH"
 
 export GOPATH="$HOME/Projects/go"
 export PATH="$PATH:$GOPATH/bin"

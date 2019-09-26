@@ -77,7 +77,7 @@ bindcode $mod+48	exec		lock
 
 # personal binds
 bindsym $mod+t          split toggle
-bindsym $mod+s          exec quickswitch
+#bindsym $mod+s          exec quickswitch
 #bindsym $mod+s          exec sshmanager
 #bindsym $mod+s          sticky toggle
 
@@ -156,6 +156,8 @@ bindsym $mod+0 workspace 10
 bindsym $mod+c workspace c
 bindsym $mod+v workspace v
 bindsym $mod+b workspace b
+bindsym $mod+n workspace n
+bindsym $mod+m workspace m
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -173,9 +175,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c move container to workspace c
 bindsym $mod+Shift+v move container to workspace v
 bindsym $mod+Shift+b move container to workspace b
+bindsym $mod+Shift+n move container to workspace n
+bindsym $mod+Shift+m move container to workspace m
 
 # move containers to left/right monitors
-bindsym $mod+Shift+period move container to output right
 bindsym $mod+Shift+comma move container to output left
 
 # move workspace to left and right monitors
@@ -254,5 +257,8 @@ focus_follows_mouse no
 
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec --no-startup-id compton --xrender-sync-fence
+#exec --no-startup-id compton --xrender-sync-fence
 exec --no-startup-id feh --bg-fill ~/.config/wall.pic
+
+exec --no-startup-id i3-msg 'workspace 10; exec /usr/bin/firefox-developer-edition'
+exec --no-startup-id i3-msg 'workspace b; exec mattermost-desktop'

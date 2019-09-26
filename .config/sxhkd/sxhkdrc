@@ -15,8 +15,8 @@ super + r
   $TERMINAL -e ranger
 super + q
   $BROWSER
-super + c
-  code-oss; sleep 1;
+#super + c
+#  code-oss; sleep 1;
 
 # Function keys
 # Show readme
