@@ -120,9 +120,13 @@ ino { {}<left>
 ino [ []<left>
 ino ( ()<left>
 
-
 " Remap leader key to something more convenient
 let mapleader=","
+
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 
 " Resizing vim split height
 set winheight=30
@@ -169,7 +173,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-" coc settings
 " if hidden is not set, TextEdit might fail.
 set hidden
 " Better display for messages
@@ -181,9 +184,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-
+" coc settings
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -203,7 +204,7 @@ let g:coc_snippet_next = '<tab>'
 " Language specific configs
 " golang
 au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-au FileType go let g:go_auto_type_info = 1
+au FileType go let g:go_auto_type_info = 0
 au FileType go let g:go_highlight_build_constraints = 1
 au FileType go let g:go_highlight_extra_types = 1
 au FileType go let g:go_highlight_fields = 1
