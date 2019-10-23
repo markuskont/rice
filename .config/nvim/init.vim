@@ -123,10 +123,10 @@ ino ( ()<left>
 " Remap leader key to something more convenient
 let mapleader=","
 
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
+noremap <Leader>Y "*y
+noremap <Leader>P "*p
+noremap <Leader>y "+y
+noremap <Leader>p "+p
 
 " Resizing vim split height
 set winheight=30
