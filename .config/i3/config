@@ -256,9 +256,10 @@ focus_follows_mouse no
 # STARTUP
 
 exec --no-startup-id dunst
+exec --no-startup-id compton
 exec --no-startup-id nm-applet
-#exec --no-startup-id compton --xrender-sync-fence
 exec --no-startup-id feh --bg-fill ~/.config/wall.pic
 
-exec --no-startup-id i3-msg 'workspace 10; exec /usr/bin/firefox-developer-edition'
-exec --no-startup-id i3-msg 'workspace b; exec mattermost-desktop'
+exec --no-startup-id i3-msg 'workspace b; exec /usr/bin/firefox-developer-edition'
+exec --no-startup-id i3-msg 'workspace m; exec mattermost-desktop'
+exec --no-startup-id i3-msg 'workspace m; exec opera'

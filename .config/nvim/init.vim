@@ -71,6 +71,10 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'fatih/vim-go'
 " Rust
 Plug 'rust-lang/rust.vim'
+" R
+Plug 'jalvesaq/Nvim-R'
+" CSV
+Plug 'chrisbra/csv.vim'
 call plug#end()
 
 " Main configs
