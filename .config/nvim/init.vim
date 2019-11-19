@@ -245,7 +245,7 @@ au FileType go nmap <leader>im :GoImport<cr>
 au FileType go nmap <leader>ipl :GoImpl<cr>
 
 au FileType yaml setlocal et ts=2 ai sw=2 nu sts=0
-au FileType yaml set cursorlin
+au FileType yaml set cursorline
 
 " Rust
 
