@@ -75,6 +75,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'jalvesaq/Nvim-R'
 " CSV
 Plug 'chrisbra/csv.vim'
+" Ansible
+Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 " Main configs
@@ -241,6 +243,9 @@ au FileType go nmap <leader>gt :GoDeclsDir<cr>
 au FileType go nmap <leader>i :GoInstall<cr>
 au FileType go nmap <leader>im :GoImport<cr>
 au FileType go nmap <leader>ipl :GoImpl<cr>
+
+au FileType yaml setlocal et ts=2 ai sw=2 nu sts=0
+au FileType yaml set cursorlin
 
 " Rust
 
