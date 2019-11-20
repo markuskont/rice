@@ -17,7 +17,11 @@ export DMENU_OPTS='-i -l 20 -fn "hack 9" -sb "#444444"'
 alias l=exa
 alias ll="exa -l"
 alias lll="exa -lah"
+alias lt="exa --tree"
+alias llt="exa -lh --tree"
+alias lllt="exa -alh --tree"
 
+alias old_grep="/usr/bin/grep"
 alias grep=rg
 alias ed=$EDITOR
 
