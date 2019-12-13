@@ -50,7 +50,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Install plugins
-call plug#begin('~/.local/nvim')
+call plug#begin('~/.local/share/nvim/plug')
 " Cannot live without
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -63,12 +63,13 @@ Plug 'mhartington/oceanic-next'
 " Core stuff
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'sheerun/vim-polyglot'
 
 " Golang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', {'tag': 'v1.21'}
 " Rust
 Plug 'rust-lang/rust.vim'
 " R
@@ -154,7 +155,8 @@ nnoremap <leader>B :Buffers<CR>
 
 " FZF configs
 " [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+" Disable
+let g:fzf_buffers_jump = 0
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " [Tags] Command to generate tags file
@@ -219,6 +221,8 @@ au FileType go let g:go_highlight_methods = 1
 au FileType go let g:go_highlight_operators = 1
 au FileType go let g:go_highlight_structs = 1
 au FileType go let g:go_highlight_types = 1
+au FileType go let g:go_gopls_enabled = 1
+
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
 
@@ -255,12 +259,3 @@ set cursorcolumn
 " Python
 au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-
-py3 << EOF
-import os, sys, pathlib
-if 'VIRTUAL_ENV' in os.environ:
-    venv = os.getenv('VIRTUAL_ENV')
-    site_packages = next(pathlib.Path(venv, 'lib').glob('python*/site-packages'), None)
-    if site_packages:
-        sys.path.insert(0, str(site_packages))
-EOF
