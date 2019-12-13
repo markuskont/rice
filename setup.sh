@@ -100,7 +100,7 @@ if $GUI; then
   # browsers
   pkgs+=" qutebrowser firefox-developer-edition"
   # gtk/qt styling
-  pkgs+=" extra/ttf-hack numix-gtk-theme qt5-styleplugins"
+  pkgs+=" extra/ttf-hack qt5-styleplugins"
   case $WM in
     ${SESSIONS[0]} )
       pkgs+=" finch"
@@ -151,10 +151,13 @@ fi
 if $GUI; then
   case $WM in
     ${SESSIONS[1]} )
-      echo "Installin polybar from aur"
+      echo "Installing polybar from aur"
       git clone https://aur.archlinux.org/polybar.git /tmp/polybar ; cd /tmp/polybar ; makepkg -si $AUR_OPTS ; cd -
       ;;
   esac
+
+  echo "Installing numix theme"
+  git clone https://aur.archlinux.org/numix-gtk-theme-git.git /tmp/numix ; cd /tmp/numix ; makepkg -si $AUR_OPTS ; cd -
 
   echo "Building DWM and ST"
   make build || exit 1
