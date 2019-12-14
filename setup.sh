@@ -6,7 +6,7 @@
 CURL_OTPS="--retry 5 --retry-delay 2 --retry-max-time 60"
 AUR_OPTS="--noconfirm"
 
-WALLPAPER="https://w.wallhaven.cc/full/r2/wallhaven-r2opq1.jpg"
+WALLPAPER="https://w.wallhaven.cc/full/ym/wallhaven-ymwmek.jpg"
 
 DM=false
 ENV_SETUP=true
@@ -112,7 +112,7 @@ if $GUI; then
   esac
 fi
 if $DM; then 
-  pkgs+=" lightdm" 
+  pkgs+=" slim" 
 fi
 if $CODE; then 
   pkgs+=" go"
@@ -145,16 +145,13 @@ if $CODE; then
   curl $CURL_OTPS --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s - -y
   command -v rg || cargo install --force ripgrep
   command -v exa || cargo install --force exa
+  command -v bat || cargo install --force bat
   rustup component add rls rust-analysis rust-src
 fi
 
 if $GUI; then
-  case $WM in
-    ${SESSIONS[1]} )
-      echo "Installing polybar from aur"
-      git clone https://aur.archlinux.org/polybar.git /tmp/polybar ; cd /tmp/polybar ; makepkg -si $AUR_OPTS ; cd -
-      ;;
-  esac
+  echo "Installing polybar from aur"
+  git clone https://aur.archlinux.org/polybar.git /tmp/polybar ; cd /tmp/polybar ; makepkg -si $AUR_OPTS ; cd -
 
   echo "Installing numix theme"
   git clone https://aur.archlinux.org/numix-gtk-theme-git.git /tmp/numix ; cd /tmp/numix ; makepkg -si $AUR_OPTS ; cd -
@@ -188,14 +185,9 @@ if $GUI; then
   fi
 fi
 
-if $DM; then 
-  echo "Setting up lightdm"
-  git clone https://aur.archlinux.org/lightdm-mini-greeter.git /tmp/mini-greeter ; cd /tmp/mini-greeter ; makepkg -si $AUR_OPTS
-  cd -
-  sudo make install-dwm-ldm
-  sudo sed -i "s,USER,$(whoami),g"  /etc/lightdm/lightdm-mini-greeter.conf
-  sudo sed -i "s,SESS,${WM},g"      /etc/lightdm/lightdm.conf
-  sudo systemctl enable lightdm.service
+if $DM; then
+  sudo systemctl enable slim.service
+  sudo cp etc/slim.conf /etc/slim.conf
 fi
 
 echo "Configuring neovim"
@@ -205,7 +197,4 @@ curl $CURL_OTPS -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 nvim +PlugInstall +qa
 if $CODE; then
   nvim +GoInstallBinaries +qa
-#  for addon in rls tsserver python snippets ; do
-#    nvim "+CocInstall coc-${addon}" +qa
-#  done
 fi
