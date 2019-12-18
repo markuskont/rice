@@ -11,6 +11,8 @@ export PATH="$HOME/.gem/ruby/2.6.0/bin/:$PATH"
 export GOPATH="$HOME/Projects/go"
 export PATH="$PATH:$GOPATH/bin"
 
+export PATH="$PATH:$HOME/.luarocks/bin"
+
 export PATH=~/.npm-global/bin:$PATH
 export DMENU_OPTS='-i -l 20 -fn "hack 9" -sb "#444444"'
 
