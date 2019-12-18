@@ -204,8 +204,7 @@ curl $CURL_OTPS -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qa
 if $CODE; then
-  nvim +GoInstallBinaries +qa
-#  for addon in rls tsserver python snippets ; do
-#    nvim "+CocInstall coc-${addon}" +qa
-#  done
+  nvim -c "GoInstallBinaries|q"
+  nvim -c "CocInstall -sync coc-json coc-html coc-rls coc-python coc-html coc-yaml coc-snippets coc-git coc-markdownlint|q"
+  #nvim -c "CocInstall -sync coc-json coc-html coc-rls coc-python coc-html coc-tsserver coc-r-lsp coc-yaml coc-snippets coc-git coc-texlab coc-powershell coc-markdownlint coc-yank|q"
 fi
