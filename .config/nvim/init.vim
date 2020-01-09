@@ -252,7 +252,10 @@ au FileType yaml setlocal et ts=2 ai sw=2 nu sts=0
 au FileType yaml set list
 
 set cursorline
-set cursorcolumn
+au FileType yaml set cursorcolumn
+au FileType python set cursorcolumn
+au FileType ansible set cursorcolumn
+au FileType jinja2 set cursorcolumn
 
 " Rust
 
