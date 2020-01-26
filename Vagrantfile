@@ -19,5 +19,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cpus", CPUS]
   end
   config.vm.provision "shell", inline: $SHELL
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", 
+    disabled: false, 
+    type: "rsync", 
+    rsync__exclude: ".git/"
 end

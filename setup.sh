@@ -15,7 +15,7 @@ GUI=false
 RDP=false
 HYPERV=false
 
-SESSIONS=( "dwm" "openbox-session" )
+SESSIONS=( "dwm" "openbox-session" "i3" )
 WM=""
 
 function install_zsh() {
@@ -47,10 +47,11 @@ case "$choice" in
 esac
 
 if $GUI; then
-  read -p "Select window manager - 1. dwm 2. openbox " choice
+  read -p "Select window manager - 1. dwm 2. openbox 3. i3-gaps" choice
   case "$choice" in 
     1 ) WM=${SESSIONS[0]} ;;
     2 ) WM=${SESSIONS[1]} ;;
+    3 ) WM=${SESSIONS[2]} ;;
     * ) echo "invalid choice"; exit 1;;
   esac
 
@@ -109,10 +110,13 @@ if $GUI; then
       pkgs+=" openbox"
       pkgs+=" pidgin"
       ;;
+    ${SESSIONS[2]} )
+      pkgs+=" i3-gaps i3status i3lock"
+      ;;
   esac
 fi
 if $DM; then 
-  pkgs+=" slim" 
+  pkgs+=" slim slim-themes" 
 fi
 if $CODE; then 
   pkgs+=" go"
