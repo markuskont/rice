@@ -1,43 +1,60 @@
-!! black
-*color0: #1b1918
-*color8: #766e6b
-!! red
-*color1: #f22c40
-*color9: #f22c40
-!! green
-*color2: #5ab738
-*color10: #5ab738
-!! yellow
-*color3: #d5911a
-*color11: #d5911a
-!! blue
-*color4: #407ee7
-*color12: #407ee7
-!! magenta
-*color5: #6666ea
-*color13: #6666ea
-!! cyan
-*color6: #00ad9c
-*color14: #00ad9c
-!! white
-*color7: #a8a19f
-*color15: #f1efee
-! Dracula Xresources palette
-!*.foreground: #F8F8F2
-!*.background: #282A36
-!*.color0:     #000000
-!*.color8:     #4D4D4D
-!*.color1:     #FF5555
-!*.color9:     #FF6E67
-!*.color2:     #50FA7B
-!*.color10:    #5AF78E
-!*.color3:     #F1FA8C
-!*.color11:    #F4F99D
-!*.color4:     #BD93F9
-!*.color12:    #CAA9FA
-!*.color5:     #FF79C6
-!*.color13:    #FF92D0
-!*.color6:     #8BE9FD
-!*.color14:    #9AEDFE
-!*.color7:     #BFBFBF
-!*.color15:    #E6E6E6
+URxvt.perl-ext-common:  resize-font
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.font: xft:hack:size=10
+
+URxvt.background: #282828
+URxvt.foreground: #ebdbb2
+
+URxvt.scrollBar: false
+
+URxvt.keysym.C-J:   resize-font:smaller
+URxvt.keysym.C-K:   resize-font:bigger
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
