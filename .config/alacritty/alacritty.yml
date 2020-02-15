@@ -74,3 +74,6 @@ key_bindings:
   - { key: Key0,     mods: Control,       action: ResetFontSize    }
   - { key: K,        mods: Control|Shift, action: IncreaseFontSize }
   - { key: J,        mods: Control|Shift, action: DecreaseFontSize }
+
+font:
+  size: 9
