@@ -186,7 +186,7 @@ bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
 
 # #---Dropdown/Scratchpad Windows---# #
 for_window [instance="spotify"] floating enable
-for_window [instance="spotify"] resize set 1000 900
+for_window [instance="spotify"] resize set 1000 700
 for_window [instance="spotify"] move scratchpad
 for_window [instance="spotify"] border pixel 5
 exec --no-startup-id spotify
@@ -194,11 +194,19 @@ bindsym $mod+o			[instance="spotify"] scratchpad show; [instance="spotify"] move
 
 # #---Dropdown/Scratchpad Windows---# #
 for_window [instance="keepassx2"] floating enable
-for_window [instance="keepassx2"] resize set 1000 900
+for_window [instance="keepassx2"] resize set 1000 700
 for_window [instance="keepassx2"] move scratchpad
 for_window [instance="keepassx2"] border pixel 5
 exec --no-startup-id keepassx2
 bindsym $mod+p			[instance="keepassx2"] scratchpad show; [instance="keepassx2"] move position center
+
+# #---Dropdown/Scratchpad Windows---# #
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 800 600
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+exec --no-startup-id st -n dropdown -e tmux
+bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 # disable mouse warping, very annoying
 mouse_warping none
@@ -216,6 +224,10 @@ input 1133:50487:Logitech_USB_Receiver {
     pointer_accel 0.0
 }
 input 5426:28:Razer__Razer_Abyssus {
+    accel_profile flat
+    pointer_accel 0.0
+}
+input 1133:49291:Logitech_G502_HERO_Gaming_Mouse_Consumer_Control {
     accel_profile flat
     pointer_accel 0.0
 }
