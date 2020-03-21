@@ -22,6 +22,8 @@ URxvt.keysym.C-K:   resize-font:bigger
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+Xft.dpi: 96
+
 ! -----------------------------------------------------------------------------
 ! File: gruvbox-dark.xresources
 ! Description: Retro groove colorscheme generalized
