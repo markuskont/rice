@@ -59,17 +59,16 @@ Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' 
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Coding helpers
 " Core stuff
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
 
-" Golang
-Plug 'fatih/vim-go', {'tag': 'v1.22'}
 " Rust
 Plug 'rust-lang/rust.vim'
 " R
@@ -257,8 +256,8 @@ else
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> üg <Plug>(coc-diagnostic-prev)
+nmap <silent> õg <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
