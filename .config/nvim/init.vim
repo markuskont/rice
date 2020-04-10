@@ -69,7 +69,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
 
 " Golang
-Plug 'fatih/vim-go', {'tag': 'v1.21'}
+Plug 'fatih/vim-go', {'tag': 'v1.22'}
 " Rust
 Plug 'rust-lang/rust.vim'
 " R
