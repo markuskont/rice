@@ -29,7 +29,7 @@ font hack 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-set $term --no-startup-id st
+set $term --no-startup-id alacritty
 
 for_window [class="^.*"] border pixel 2
 #new_window 1pixel
