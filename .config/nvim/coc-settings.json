@@ -3,6 +3,7 @@
   "diagnostic.messageTarget": "echo",
   "coc.preferences.hoverTarget": "echo",
   "signature.target": "echo",
+  "python.jediEnabled": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",
