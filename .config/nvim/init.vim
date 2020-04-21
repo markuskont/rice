@@ -399,9 +399,14 @@ au FileType yaml set cursorcolumn
 au FileType python set cursorcolumn
 au FileType ansible set cursorcolumn
 au FileType jinja2 set cursorcolumn
+au FileType markdown set cursorcolumn
 
 " Rust
 
 " Python
 au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+" Latex/markdown
+au FileType markdown set spell
+au FileType tex set spell
