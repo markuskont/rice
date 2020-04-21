@@ -91,6 +91,9 @@ endif
 " play nice with tiling window manager splits
 autocmd VimResized * wincmd =
 
+" Use system clipboard
+set clipboard=unnamedplus
+
 " Some vim bindings were made with english keyboard layout in mind
 " Jump paragraph is really awkward with Estonian keyboard (AltGr+7,AlgGr+0)
 map ü {(
