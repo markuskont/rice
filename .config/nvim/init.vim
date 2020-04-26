@@ -59,6 +59,8 @@ Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' 
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Coding helpers
@@ -84,12 +86,19 @@ call plug#end()
 if !empty($VIM_COLOR)
   colorscheme $VIM_COLOR
 else
-  set background=dark
+  set termguicolors
+  set background=light
   colorscheme gruvbox
 endif
 
 " play nice with tiling window manager splits
 autocmd VimResized * wincmd =
+
+" Wrap words in quickfix window
+augroup quickfix
+  autocmd!
+  autocmd FileType qf setlocal wrap
+augroup END
 
 " Use system clipboard
 set clipboard=unnamedplus
@@ -258,9 +267,10 @@ else
   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-" Use `[g` and `]g` to navigate diagnostics
-"nmap <silent> üg <Plug>(coc-diagnostic-prev)
-"nmap <silent> õg <Plug>(coc-diagnostic-next)
+" Use `g[` and `g]` to navigate diagnostics
+" Adjusted for nordic keyboard
+nmap <silent> gü <Plug>(coc-diagnostic-prev)
+nmap <silent> gõ <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -390,6 +400,9 @@ au FileType go nmap <leader>gt :GoDeclsDir<cr>
 au FileType go nmap <leader>i :GoInstall<cr>
 au FileType go nmap <leader>im :GoImport<cr>
 au FileType go nmap <leader>ipl :GoImpl<cr>
+
+au FileType go set colorcolumn=100
+au FileType go set spell&
 
 au FileType yaml setlocal et ts=2 ai sw=2 nu sts=0
 au FileType yaml set list
