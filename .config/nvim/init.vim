@@ -58,6 +58,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
+Plug 'herrbischoff/cobalt2.vim'
 
 Plug 'tpope/vim-fugitive'
 
@@ -87,7 +88,7 @@ if !empty($VIM_COLOR)
   colorscheme $VIM_COLOR
 else
   set termguicolors
-  set background=light
+  set background=dark
   colorscheme gruvbox
 endif
 
