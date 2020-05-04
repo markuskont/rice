@@ -55,10 +55,11 @@ call plug#begin('~/.local/share/nvim/plug')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Color schemes
-Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.vim/plug/dracula-theme' }
+Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.local/share/nvim/plug/dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'herrbischoff/cobalt2.vim'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'tpope/vim-fugitive'
 
@@ -89,7 +90,7 @@ if !empty($VIM_COLOR)
 else
   set termguicolors
   set background=dark
-  colorscheme gruvbox
+  colorscheme solarized
 endif
 
 " play nice with tiling window manager splits
