@@ -10,6 +10,7 @@ install-env:
 	cp .gtkrc-2.0 .xinitrc .tmux.conf .zshrc .Xresources .xprofile .profile .zprofile ~/
 install-configs:
 	rsync -va ./.config/ ~/.config/
+	cp ./.tmux.conf ~/.tmux.conf
 install-dwm-ldm:
 	mkdir -p /usr/share/xsessions
 	cp -f lightdm/dwm.desktop /usr/share/xsessions/

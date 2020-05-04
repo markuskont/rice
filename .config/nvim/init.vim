@@ -90,7 +90,7 @@ if !empty($VIM_COLOR)
 else
   set termguicolors
   set background=dark
-  colorscheme solarized
+  colorscheme gruvbox
 endif
 
 " play nice with tiling window manager splits
