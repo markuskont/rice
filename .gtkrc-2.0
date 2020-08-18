@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/markus/.gtkrc-2.0.mine"
-gtk-theme-name="Numix"
-gtk-icon-theme-name="Numix"
+gtk-theme-name="gruvbox-dark-gtk"
+gtk-icon-theme-name="gruvbox-dark-gtk"
 gtk-font-name="Hack 10"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
