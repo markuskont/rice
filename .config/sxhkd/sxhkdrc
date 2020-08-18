@@ -31,6 +31,6 @@ XF86AudioNext
 XF86AudioPrev
 	playerctl previous
 XF86AudioLowerVolume
-  pactl set-sink-volume 0 -5%
+  pactl set-sink-volume $(pactl list sinks short | pcregrep --color -o1 '^(\d+)\s+.+RUNNING') -5%
 XF86AudioRaiseVolume
-  pactl set-sink-volume 0 +5%
+  pactl set-sink-volume $(pactl list sinks short | pcregrep --color -o1 '^(\d+)\s+.+RUNNING') +5%

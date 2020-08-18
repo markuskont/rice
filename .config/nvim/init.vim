@@ -54,6 +54,8 @@ call plug#begin('~/.local/share/nvim/plug')
 " Cannot live without
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+"Plug 'lotabout/skim.vim'
 " Color schemes
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.local/share/nvim/plug/dracula-theme' }
 Plug 'morhetz/gruvbox'
@@ -72,7 +74,12 @@ Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'liuchengxu/vista.vim'
 
+" Python
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'Vimjas/vim-python-pep8-indent'
 " Rust
 Plug 'rust-lang/rust.vim'
 " R
@@ -81,7 +88,11 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'chrisbra/csv.vim'
 " Ansible
 Plug 'pearofducks/ansible-vim'
+Plug 'szymonmaszke/vimpyter'
 call plug#end()
+
+"command! -bang -nargs=* Ag call fzf#vim#ag_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+"command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 
 " Main configs
 " Color scheme
@@ -194,6 +205,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+"let g:ale_linters = {'rust': ['analyzer']}
+let g:ale_linters = {
+      \   'python': ['flake8', 'pylint'],
+      \   'ruby': ['standardrb', 'rubocop'],
+      \   'javascript': ['eslint'],
+      \}
+
 " if hidden is not set, TextEdit might fail.
 set hidden
 " Better display for messages
@@ -292,7 +310,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -380,6 +398,7 @@ au FileType go let g:go_gopls_enabled = 1
 
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
+au FileType go let CursorHold * silent call CocActionAsync('highlight')
 
 function! s:build_go_files()
   let l:file = expand('%')
@@ -421,7 +440,17 @@ au FileType markdown set cursorcolumn
 " Python
 au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+au FileType python set colorcolumn=100
+
+autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
+autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
+autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
 
 " Latex/markdown
 au FileType markdown set spell
 au FileType tex set spell
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>

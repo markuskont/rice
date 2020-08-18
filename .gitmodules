@@ -12,3 +12,6 @@
 [submodule ".config/rofi/themes/gruvbox"]
 	path = .config/rofi/themes/gruvbox
 	url = https://github.com/bardisty/gruvbox-rofi
+[submodule ".config/polybar/polybar-spotify"]
+	path = .config/polybar/polybar-spotify
+	url = https://github.com/Jvanrhijn/polybar-spotify.git
