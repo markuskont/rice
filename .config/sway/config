@@ -199,14 +199,6 @@ exec --no-startup-id spotify
 bindsym $mod+o			[instance="spotify"] scratchpad show; [instance="spotify"] move position center
 
 # #---Dropdown/Scratchpad Windows---# #
-for_window [instance="keepassx2"] floating enable
-for_window [instance="keepassx2"] resize set 1000 700
-for_window [instance="keepassx2"] move scratchpad
-for_window [instance="keepassx2"] border pixel 5
-exec --no-startup-id keepassx2
-bindsym $mod+p			[instance="keepassx2"] scratchpad show; [instance="keepassx2"] move position center
-
-# #---Dropdown/Scratchpad Windows---# #
 for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 800 600
 for_window [instance="dropdown"] move scratchpad
@@ -225,6 +217,10 @@ set $laptop LVDS-1
 bindswitch --reload lid:on output $laptop disable
 bindswitch --reload lid:off output $laptop enable
 
+input 1133:16490:Logitech_MX_Anywhere_2S {
+    accel_profile flat
+    pointer_accel 0.0
+}
 input 1133:50487:Logitech_USB_Receiver {
     accel_profile flat
     pointer_accel 0.0
