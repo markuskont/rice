@@ -88,6 +88,8 @@ super + ctrl + {F5,F6,F7,F8}
 super + F9
   bspc node -g hidden
 
+super + F10
+  whid
 #
 # focus/swap
 #
