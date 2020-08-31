@@ -10,7 +10,10 @@ case $(hostname -s) in
   sycamore)
     polybar --config=${HOME}/.config/polybar/sycamore.conf top &
     ;;
-  *) echo no 
+  moksha)
+    polybar --config=${HOME}/.config/polybar/moksha.conf bspwm &
+    ;;
+  *)
     polybar top &
     ;;
 esac

@@ -14,8 +14,7 @@ super + shift + d
 super + r
   alacritty -e ranger
 
-# Media keys
-XF86AudioPlay
+# Media keys XF86AudioPlay
   playerctl play-pause
 XF86AudioNext
   playerctl next
@@ -68,7 +67,7 @@ super + shift + q
   bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-super + f
+super + space
   bspc desktop -l next
 
 #
@@ -77,10 +76,10 @@ super + f
 
 # set the window state
 super + {t,shift + t}
-  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+  bspc node -t {tiled,pseudo_tiled}
 
-super + {_, shift +} space
-  bspc node -t {floating,fullscreen}
+super + {_, shift +} f
+  bspc node -t {fullscreen,floating}
 
 # set the node flags
 super + ctrl + {F5,F6,F7,F8}
