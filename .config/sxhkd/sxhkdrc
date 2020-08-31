@@ -85,6 +85,9 @@ super + {_, shift +} f
 super + ctrl + {F5,F6,F7,F8}
   bspc node -g {marked,locked,sticky,private}
 
+super + F9
+  bspc node -g hidden
+
 #
 # focus/swap
 #
