@@ -1,4 +1,4 @@
-background_opacity: 0.95
+background_opacity: 1
 env:
   TERM: xterm-256color
 schemes:
@@ -207,15 +207,16 @@ key_bindings:
   - { key: J,        mods: Control|Shift, action: DecreaseFontSize }
 
 font:
+  #xft:iosevka nerd font mono:size=13
   size: 9
     # The normal (roman) font face to use.
   normal:
-    family: hack
+    family: iosevka
 
   # The bold font face
   bold:
-    family: hack
+    family: iosevka
 
   # The italic font face
   italic:
-    family: hack
+    family: iosevka
