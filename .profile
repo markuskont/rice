@@ -33,10 +33,19 @@ alias zzz='systemctl suspend'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
-# If running from tty1 start sway
-if [ "$(tty)" = "/dev/tty1" ]; then
-  export QT_QPA_PLATFORMTHEME=qt5ct
-  export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-  export GTK_THEME=Numix
-	exec sway
-fi
+case $(tty) in
+  "/dev/tty1")
+    export SESSION=bspwm
+    startx
+    ;;
+  "/dev/tty2")
+    export SESSION=i3
+    startx
+    ;;
+  "/dev/tty3")
+    export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    export GTK_THEME=gruvbox-dark-gtk
+    exec sway
+    ;;
+esac

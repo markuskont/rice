@@ -1,9 +1,5 @@
-#!/bin/bash
-
-SESSION=REPLACE
-
-[ -f ~/.profile ] && source ~/.profile
-[ -f ~/.xprofile ] && source ~/.xprofile
-xrdb -merge ~/.Xresources
-
+printf "starting %s \n" $SESSION
+export GTK_THEME=gruvbox-dark-gtk
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export QT_QPA_PLATFORMTHEME=gtk2
 exec $SESSION
