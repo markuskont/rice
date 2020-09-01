@@ -54,7 +54,7 @@ super + shift + Escape
 super + g
   bspc config window_gap 0
 super + shift + g
-  bspc config window_gap 10
+  bspc config window_gap 15
 
 # bspwm hotkeys
 
@@ -64,7 +64,7 @@ super + shift + g
 
 # close and kill
 super + shift + q
-  bspc node -{c,k}
+  bspc node -c
 
 # alternate between the tiled and monocle layout
 super + space
