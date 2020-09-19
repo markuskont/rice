@@ -14,7 +14,8 @@ super + shift + d
 super + r
   alacritty -e ranger
 
-# Media keys XF86AudioPlay
+# Media keys 
+XF86AudioPlay
   playerctl play-pause
 XF86AudioNext
   playerctl next

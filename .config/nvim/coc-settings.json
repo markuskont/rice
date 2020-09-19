@@ -4,6 +4,7 @@
   "coc.preferences.hoverTarget": "echo",
   "signature.target": "echo",
   "python.jediEnabled": false,
+  "python.linting.flake8Args": [],
   "languageserver": {
     "ccls": {
       "command": "ccls",

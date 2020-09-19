@@ -1,4 +1,7 @@
-#! /bin/sh
+#!/bin/sh
+
+# change the desktop number here
+FLOATING_DESKTOP_ID=$(bspc query -D -d X)
 
 bspc monitor -d I II III IV V VI VII VIII IX X Code Virt Browser iNterface Mx
 
@@ -6,6 +9,8 @@ xrdb ~/.Xresources
 
 bspc config border_width         1
 bspc config window_gap           15
+
+bspc config pointer_motion_interval 1
 
 bspc config split_ratio           0.50
 bspc config borderless_monocle    true
@@ -28,7 +33,14 @@ feh --bg-fill ~/.config/wall.pic
 
 pgrep -x dunst || dunst &
 pgrep -x sxhkd || sxhkd &
-pgrep -x picom || picom --config ~/.config/picom/picom.conf -b
+pgrep -x picom || picom --backend glx --config ~/.config/picom/picom.conf -b
+pgrep -x xss-lock || xss-lock -l ~/.local/bin/lock.sh
 
 sleep 0.5
 notify-send "Bspwm Loaded"
+
+bspc subscribe node_add | while read -a msg ; do
+  desk_id=${msg[2]}
+  wid=${msg[4]}
+  [ "$FLOATING_DESKTOP_ID" = "$desk_id" ] && bspc node "$wid" -t floating
+done

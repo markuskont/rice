@@ -398,7 +398,7 @@ au FileType go let g:go_gopls_enabled = 1
 
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
-au FileType go let CursorHold * silent call CocActionAsync('highlight')
+" au FileType go let CursorHold * silent call CocActionAsync('highlight')
 
 function! s:build_go_files()
   let l:file = expand('%')
@@ -440,7 +440,7 @@ au FileType markdown set cursorcolumn
 " Python
 au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-au FileType python set colorcolumn=80
+au FileType python set colorcolumn=100
 
 autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
 autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
