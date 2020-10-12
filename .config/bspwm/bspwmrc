@@ -40,6 +40,7 @@ bspc rule -a Steam desktop='X' state=floating follow=off
 bspc rule -a signal-desktop desktop='Mx' follow=off
 
 pgrep -x firefox || (bspc rule -a "firefoxdeveloperedition" desktop="Browser" follow=off  && firefox-developer-edition ; bspc rule -r "firefoxdeveloperedition")
+pgrep -x chromium || (bspc rule -a "Chromium" desktop="iNterface" follow=off && chromium ; bspc rule -r "Chromium")
 
 # Autostart
 $HOME/.config/polybar/launch.sh
