@@ -1,0 +1,4 @@
+#!/bin/sh
+
+bspc rule -a Alacritty state=floating --one-shot
+alacritty
