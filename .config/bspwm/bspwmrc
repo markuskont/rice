@@ -40,6 +40,7 @@ bspc rule -a Steam desktop='X' state=floating follow=off
 bspc rule -a signal-desktop desktop='Mx' follow=off
 
 pgrep -x firefox || (bspc rule -a "firefoxdeveloperedition" desktop="Browser" follow=off  && firefox-developer-edition ; bspc rule -r "firefoxdeveloperedition")
+sleep 1
 pgrep -x chromium || (bspc rule -a "Chromium" desktop="iNterface" follow=off && chromium ; bspc rule -r "Chromium")
 
 # Autostart
@@ -47,10 +48,23 @@ $HOME/.config/polybar/launch.sh
 
 feh --bg-fill ~/.config/wall.pic
 
-pgrep -x dunst || dunst &
-pgrep -x sxhkd || sxhkd &
-pgrep -x picom || picom  --config ~/.config/picom/picom.conf -b
-pgrep -x xss-lock || xss-lock -l ~/.local/bin/lock.sh
+case $(hostname -s) in
+  sycamore)
+    pgrep -x dunst || dunst &
+    pgrep -x sxhkd || sxhkd &
+    pgrep -x xss-lock || xss-lock -l ~/.local/bin/lock.sh
+    ;;
+  moksha)
+    pgrep -x dunst || dunst &
+    pgrep -x sxhkd || sxhkd &
+    pgrep -x picom || picom  --config ~/.config/picom/picom.conf -b
+    pgrep -x xss-lock || xss-lock -l ~/.local/bin/lock.sh
+    ;;
+  *)
+    polybar top &
+    ;;
+esac
+
 
 sleep 0.5
 notify-send "Bspwm Loaded"
