@@ -6,7 +6,7 @@ nnoremap <leader>B :Buffers<CR>
 nnoremap <leader>W :Windows<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
-nnoremap <leader>m :Markus<CR>
+nnoremap <leader>m :Marks<CR>
 nnoremap <leader>h :History:<CR>
 nnoremap <leader>H :History<CR>
 
