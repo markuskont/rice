@@ -117,3 +117,9 @@ super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
 
 super + {_,shift + } {v,n,b,m,c}
   bspc {desktop -f,node -d} {Virt,iNterface,Browser,Mx,Code}
+
+super + bracket{left,right}
+  desk=`bspc query -D -d focused`; \
+  bspc desktop -m {prev,next}; \
+  bspc monitor -f {prev,next}; \
+  bspc desktop -f $desk
