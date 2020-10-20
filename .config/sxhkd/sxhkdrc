@@ -41,8 +41,8 @@ XF86MonBrightness{Up,Down}
 # 	amixer -q sset Master,0 toggle
 
 # system
-super + {F1,F2,F3}
-  systemctl {poweroff,reboot,suspend}
+super + {F1,F2}
+  systemctl {suspend-then-hibernate,hibernate}
 
 # make sxhkd reload its configuration files:
 super + Escape
