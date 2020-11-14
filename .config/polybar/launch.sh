@@ -1,21 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-# Terminate already running bar instances
-killall -q polybar
-
-# Wait until the processes have been shut down
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-
-case $(hostname -s) in
-  sycamore)
-    polybar --config=${HOME}/.config/polybar/sycamore.conf top &
-    ;;
-  moksha)
-    polybar --config=${HOME}/.config/polybar/moksha.conf bspwm &
-    ;;
-  *)
-    polybar top &
-    ;;
-esac
+for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+  MONITOR=$m polybar --config=${HOME}/.config/polybar/$(hostname -s).conf --reload ${SESSION} &
+done
 
 echo "Bars launched..."
