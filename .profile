@@ -8,8 +8,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin/:$PATH"
 
+export GOROOT="$HOME/.local/go"
 export GOPATH="$HOME/Projects/go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 export PATH="$PATH:$HOME/.luarocks/bin"
 
@@ -33,19 +34,12 @@ alias zzz='systemctl suspend'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
-case $(tty) in
-  "/dev/tty1")
-    export SESSION=bspwm
-    startx
+export PATH="$HOME/.poetry/bin:$PATH"
+
+case $(hostname -s) in
+  sycamore)
+    export MAIN_MONITOR=eDP-1
     ;;
-  "/dev/tty2")
-    export SESSION=i3
-    startx
-    ;;
-  "/dev/tty3")
-    export QT_QPA_PLATFORM=wayland
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    export GTK_THEME=gruvbox-dark-gtk
-    exec sway
+  *)
     ;;
 esac

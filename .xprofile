@@ -1,1 +1,20 @@
 #!/bin/bash
+
+source ~/.profile
+
+case $(tty) in
+  "/dev/tty1")
+    export SESSION=bspwm
+    startx
+    ;;
+  "/dev/tty2")
+    export SESSION=i3
+    startx
+    ;;
+  "/dev/tty3")
+    export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    export GTK_THEME=gruvbox-dark-gtk
+    exec sway
+    ;;
+esac
