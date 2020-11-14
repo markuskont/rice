@@ -1,0 +1,46 @@
+#!/bin/bash
+
+MONITOR_COUNT=$(xrandr --query | grep " connected" | wc -l)
+
+if [ "$MONITOR_COUNT" -lt 2 ]; then
+  notify-send "Monitor manager needs at least 2 monitors connected"
+  exit 0
+fi
+
+send_desktops_to_mon() {
+  IFS=' '
+  read -ra DESKS <<< "$1"
+  for desk in "${DESKS[@]}"; do
+    bspc desktop "$desk" --to-monitor $2
+  done
+}
+source ~/.profile
+
+CASE1="1. Use builtin"
+CASE2="2. Use external"
+CASE3="3. Named to external"
+CASE4="4. Numbered to external"
+
+SELECTION=$(printf "%s\n%s\n%s\n%s" "${CASE1}" "${CASE2}" "${CASE3}" "${CASE4}"   \
+  | rofi -show -dmenu -i -l 4 -p "Select action")
+
+EXT_MONITOR=$(xrandr --query | grep " connected" | cut -d" " -f1 | grep -v $MAIN_MONITOR | rofi -show -dmenu -i -l ${MONITOR_COUNT} -p "Select external monitor")
+
+case $SELECTION in
+  $CASE1)
+    bspc query -D -m ${EXT_MONITOR} --names | grep -v ${EXT_MONITOR} | while read desk ; do bspc desktop "$desk" --to-monitor ${MAIN_MONITOR} ; done
+    ;;
+  $CASE2)
+    bspc query -D -m ${MAIN_MONITOR} --names | grep -v ${MAIN_MONITOR} | while read desk ; do bspc desktop "$desk" --to-monitor ${EXT_MONITOR} ; done
+    ;;
+  $CASE3)
+    send_desktops_to_mon "${BSPWM_DESKTOPS_NAMED}" "${EXT_MONITOR}"
+    send_desktops_to_mon "${BSPWM_DESKTOPS_NUMBERED}" "${MAIN_MONITOR}"
+    ;;
+  $CASE4)
+    send_desktops_to_mon "${BSPWM_DESKTOPS_NUMBERED}" "${EXT_MONITOR}"
+    send_desktops_to_mon "${BSPWM_DESKTOPS_NAMED}" "${MAIN_MONITOR}"
+    ;;
+  *)
+    ;;
+esac
