@@ -3,7 +3,7 @@
   "diagnostic.messageTarget": "echo",
   "coc.preferences.hoverTarget": "echo",
   "signature.target": "echo",
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.linting.flake8Args": [],
   "languageserver": {
     "ccls": {
@@ -22,11 +22,6 @@
         ".hg/"
       ],
       "initializationOptions": { "cache": { "directory": "/tmp/ccls" } }
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
     },
     "dockerfile": {
       "command": "docker-langserver",

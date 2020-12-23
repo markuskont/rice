@@ -7,8 +7,8 @@ function! s:build_go_files()
   endif
 endfunction
 
-au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-au FileType go let g:go_auto_type_info = 0
+" au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+au FileType go let g:go_auto_type_info = 1
 au FileType go let g:go_highlight_build_constraints = 1
 au FileType go let g:go_highlight_extra_types = 1
 au FileType go let g:go_highlight_fields = 1
@@ -18,6 +18,7 @@ au FileType go let g:go_highlight_operators = 1
 au FileType go let g:go_highlight_structs = 1
 au FileType go let g:go_highlight_types = 1
 au FileType go let g:go_gopls_enabled = 1
+au FileType go let g:go_auto_sameids = 0
 
 au FileType go let g:go_fmt_command = "goimports"
 au FileType go let g:go_list_type = "quickfix"
