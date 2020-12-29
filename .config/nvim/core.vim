@@ -64,12 +64,8 @@ noremap <Leader>c :ccl <bar> lcl<CR>
 set hidden
 " Better display for messages
 set cmdheight=2
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-" always show signcolumns
-set signcolumn=yes
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set updatetime=300
