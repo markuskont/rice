@@ -13,6 +13,8 @@ super + shift + d
   rofi -show drun
 super + r
   alacritty -e ranger
+super + i
+  import ~/Pictures/ss.png
 
 # Media keys 
 XF86AudioPlay
