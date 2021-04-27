@@ -43,8 +43,8 @@ XF86MonBrightness{Up,Down}
 # 	amixer -q sset Master,0 toggle
 
 # system
-super + {F1,F2}
-  systemctl {suspend-then-hibernate,hibernate}
+# super + {F1,F2}
+#   systemctl {suspend-then-hibernate,hibernate}
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -54,10 +54,10 @@ super + shift + Escape
   bspc wm -r
 
 # gaps
-super + g
-  bspc config window_gap 0
-super + shift + g
-  bspc config window_gap 15
+# super + g
+#   bspc config window_gap 0
+# super + shift + g
+#   bspc config window_gap 15
 
 # bspwm hotkeys
 
@@ -81,8 +81,8 @@ super + space
 super + {t,shift + t}
   bspc node -t {tiled,pseudo_tiled}
 
-super + {_, shift +} f
-  bspc node -t {fullscreen,floating}
+super + f
+  bspc node -t {floating}
 
 # set the node flags
 super + ctrl + {F5,F6,F7,F8}
