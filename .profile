@@ -1,6 +1,6 @@
 export PATH="$HOME/.local/bin:$PATH"
-export TERMINAL=st
-export BROWSER=firefox-developer-edition
+export TERMINAL=alacritty
+export BROWSER=brave
 export EDITOR=nvim
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
@@ -35,11 +35,3 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
 export PATH="$HOME/.poetry/bin:$PATH"
-
-case $(hostname -s) in
-  sycamore)
-    export MAIN_MONITOR=eDP-1
-    ;;
-  *)
-    ;;
-esac
