@@ -1,0 +1,34 @@
+## Gruvbox
+set $background #282828
+
+# Black + DarkGrey
+set $base00  #282828
+set $base08  #928374
+
+# DarkRed + Red
+set $base01  #cc241d
+set $base09  #fb4934
+
+# DarkGreen + Green
+set $base02  #98971a
+set $base0A #b8bb26
+
+# DarkYellow + Yellow
+set $base03  #d79921
+set $base0B #fabd2f
+
+# DarkBlue + Blue
+set $base04  #458588
+set $base0C #83a598
+
+# DarkMagenta + Magenta
+set $base05  #b16286
+set $base0D #d3869b
+
+# DarkCyan + Cyan
+set $base06  #689d6a
+set $base0E #8ec07c
+
+# LightGrey + White
+set $base07  #a89984
+set $base0F #ebdbb2

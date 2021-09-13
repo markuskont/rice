@@ -1,121 +1,86 @@
 {
-	"layer": "top",
-	"position": "top",
-
-	"modules-left": [
-		"sway/workspaces",
-		"custom/right-arrow-dark"
-	],
-	"modules-center": [
-		"custom/left-arrow-dark",
-		"clock#1",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"clock#2",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"clock#3",
-		"custom/right-arrow-dark"
-	],
-	"modules-right": [
-		"custom/left-arrow-dark",
-		"pulseaudio",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"memory",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"battery",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"disk",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"tray"
-	],
-
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
+    "position": "bottom",
+    "height": 20,
+    "modules-center": ["sway/workspaces", "network", "pulseaudio", "battery", "tray", "clock"],
 
 	"sway/workspaces": {
 		"disable-scroll": true,
-		"format": "{name}"
-	},
-
-	"clock#1": {
-		"format": "{:%a}",
-		"tooltip": false
-	},
-	"clock#2": {
-		"format": "{:%H:%M}",
-		"tooltip": false
-	},
-	"clock#3": {
-		"format": "{:%m-%d}",
-		"tooltip": false
-	},
-
-	"pulseaudio": {
-		"format": "Vol {volume:2}%",
-		"format-bluetooth": "{icon}  {volume}%",
-		"format-muted": "MUTE",
-		"format-icons": {
-			"headphones": "",
-			"default": [
-				"",
-				""
-			]
+		"format": "{icon}",
+		"persistent_workspaces": {
+			"c": [],
+			"v": [],
+			"b": [],
+			"n": [],
+			"m": [],
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
 		},
-		"scroll-step": 5,
-		"on-click": "pamixer -t",
-		"on-click-right": "pavucontrol"
+		"format-icons": {
+			"c": "code",
+			"v": "VM",
+			"b": "browse",
+			"n": "SN",
+			"m": "MX",
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X"
+		}
 	},
-	"memory": {
-		"interval": 5,
-		"format": "Mem {}%"
-	},
-	"cpu": {
-		"interval": 5,
-		"format": "CPU {usage:2}%"
+
+	"clock": {
+    "format": "{:%H:%M} ",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 	},
 	"battery": {
-		"states": {
-			"good": 95,
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "Bat {capacity}%",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
+        	"states": {
+            		"warning": 30,
+            		"critical": 15,
+        	},
+        	"format": "Bat: {capacity}%",
+        	"format-charging": "Bat: {capacity}% Chr: {time}",
+        	"format-plugged": "Bat: {capacity}% Chr: {time}",
+        	"format-alt": "{time}",
+        	"format-full": "{capacity}%",
 	},
-	"disk": {
-		"interval": 5,
-		"format": "Disk {percentage_used:2}%",
-		"path": "/"
+	"network": {
+      "format-wifi": "WiFi:  {essid}",
+      "format-ethernet": "Eth: Disconnected",
+      "format-linked": "{ifname} (No IP) ",
+      "format-disconnected": "net: Disconnected",
+      "tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
 	},
-	"tray": {
-		"icon-size": 20
-	}
+	"pulseaudio": {
+		"on-click": "pactl set-sink-mute 45 toggle",
+		"format": "{icon}  {volume}%",
+        	"format-muted": "Vol: Muted",
+        	"format-icons": {
+            	"headphone": "headphone:",
+            	"hands-free": "",
+            	"headset": "",
+            	"phone": "",
+            	"portable": "",
+            	"car": "",
+            	"default": ["Vol:"]
+        },
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "CPU: {}%",
+        "max-length": 10
+    }
 }

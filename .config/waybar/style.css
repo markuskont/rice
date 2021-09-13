@@ -1,74 +1,92 @@
 * {
-	font-size: 18px;
-	font-family: monospace;
+    border-radius: 0;
+    font-family: Liga SFMono Nerd Font;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    font-size: 11px;
+    min-height: 0;
+
+    /* border: 10px solid transparent;
+    border-image: url(~/.config/sway/borders/dropShadowDarkOffset2.png) 30 stretch; */
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+    padding: 5px;
+    background: transparent;
+    color: white;
 }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
-}
-
-#workspaces,
-#clock.1,
-#clock.2,
-#clock.3,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#tray {
-	background: #1a1a1a;
-}
+tooltip {
+	background: #2a2e38;
+	border-radius: 15px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #2a2e38;
+	}
 
 #workspaces button {
-	padding: 0 2px;
-	color: #268bd2;
+    padding: 5px 10px;
+    color: #bbc2cf;
 }
+
 #workspaces button.focused {
-	color: #fdf6e3;
+    box-shadow: 2px 2px 6px 1px black;
+    color: #2a2e38;
+    background-color: #51afef;
+    border-radius: 15px;
 }
-#workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
+
+#workspaces button.urgent {
+    color: #2a2e38;
+    background-color: #7bc275;
+    border-radius: 15px;
 }
+
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
+	background-color: #5cEfFF;
+	color: #2a2e38;
+	border-radius: 15px;
+}
+
+#clock, #battery, #pulseaudio, #network, #workspaces, #cpu, #tray {
+	background-color: #2a2e38;
+	padding: 5px 10px;
+	margin: 5px 0px;
+}
+
+#workspaces {
+	background-color: #2a2e38;
+	border-radius: 15px 0px 0px 15px;
+}
+
+#clock {
+    color: #FCCE7B;
+    border-radius: 0px 15px 15px 0px;
+    margin-right: 10px;
+}
+
+#battery {
+    color: #7bc275;
+}
+
+#cpu {
+    color: #7bc275;
+}
+
+#battery.charging {
+    color: #7bc275;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #2a2e38;
+    color: #FCCE7B;
+}
+
+#network {
+	color: #C57BDB;
+	border-radius: 0px 0px 0px 0px;
 }
 
 #pulseaudio {
-	color: #268bd2;
-}
-#memory {
-	color: #2aa198;
-}
-#cpu {
-	color: #6c71c4;
-}
-#battery {
-	color: #859900;
-}
-#disk {
-	color: #b58900;
-}
-
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk {
-	padding: 0 10px;
+	color: #4db5bd;
 }
