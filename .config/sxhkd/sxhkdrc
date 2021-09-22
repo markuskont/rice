@@ -13,8 +13,10 @@ super + shift + d
   rofi -show drun
 super + r
   alacritty -e ranger
-super + i
-  import ~/Pictures/ss.png
+super + Print
+  import ~/Pictures/ss-$(date +%Y-%m-%d_%H-%M-%s).png
+super + q
+  dmenu-power.sh
 
 # Media keys 
 XF86AudioPlay
@@ -42,28 +44,12 @@ XF86MonBrightness{Up,Down}
 # XF86AudioMute
 # 	amixer -q sset Master,0 toggle
 
-# system
-# super + {F1,F2}
-#   systemctl {suspend-then-hibernate,hibernate}
-
 # make sxhkd reload its configuration files:
 super + Escape
   pkill -USR1 -x sxhkd
 
 super + shift + Escape
   bspc wm -r
-
-# gaps
-# super + g
-#   bspc config window_gap 0
-# super + shift + g
-#   bspc config window_gap 15
-
-# bspwm hotkeys
-
-# quit/restart bspwm
-#super + shift + {q,r}
-# bspc {quit,wm -r}
 
 # close and kill
 super + shift + q
@@ -106,7 +92,9 @@ super + ctrl + {h,j,k,l}
   bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # focus the next/previous desktop in the current monitor
-super + {q,e}
+# super + {q,e}
+#   bspc node -f {next,prev}.local.!hidden.window
+alt + {_,shift +} Tab
   bspc node -f {next,prev}.local.!hidden.window
 
 # focus the last node/desktop
@@ -118,7 +106,7 @@ super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
   bspc {desktop -f,node -d} '{I,II,III,IV,V,VI,VII,VIII,IX,X}'
 
 super + {_,shift + } {v,n,b,m,c}
-  bspc {desktop -f,node -d} {Virt,iNterface,Browser,Mx,Code}
+  bspc {desktop -f,node -d} {Virt,SN,Browser,MX,Code}
 
 super + bracket{left,right}
   desk=`bspc query -D -d focused`; \
