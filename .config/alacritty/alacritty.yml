@@ -207,24 +207,26 @@ colors: *grvdrk
 
 key_bindings:
   # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: K,        mods: Control|Shift, action: IncreaseFontSize }
-  - { key: J,        mods: Control|Shift, action: DecreaseFontSize }
+  - { key: V,       mods: Control|Shift, action: Paste            }
+  - { key: C,       mods: Control|Shift, action: Copy             }
+  - { key: Insert,  mods: Shift,         action: PasteSelection   }
+  - { key: Key0,    mods: Control,       action: ResetFontSize    }
+  - { key: K,       mods: Control|Shift, action: IncreaseFontSize }
+  - { key: J,       mods: Control|Shift, action: DecreaseFontSize }
+  - { key: Return,  mods: Alt,           action: ToggleFullscreen }
+  - { key: F11,     action: ToggleFullscreen }
 
 font:
   #xft:iosevka nerd font mono:size=13
-  size: 9
+  size: 12
     # The normal (roman) font face to use.
   normal:
-    family: iosevka
+    family: Fira Code
 
   # The bold font face
   bold:
-    family: iosevka
+    family: Fira Code
 
   # The italic font face
   italic:
-    family: iosevka
+    family: Fira Code
