@@ -11,6 +11,6 @@ convert $img -scale 10% -scale 1000% $img
 # Add the lock image
 #convert $img $icon -gravity center -composite $img
 # Run i3lock with custom background
-i3lock -u -i $img
+i3lock -i $img
 # Remove the tmp file
 rm $img
