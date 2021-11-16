@@ -21,7 +21,7 @@ au FileType go let g:go_gopls_enabled = 1
 au FileType go let g:go_auto_sameids = 0
 
 au FileType go let g:go_fmt_command = "goimports"
-au FileType go let g:go_list_type = "quickfix"
+" au FileType go let g:go_list_type = "quickfix"
 
 au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 au FileType go nmap <leader>t  <Plug>(go-test)

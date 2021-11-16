@@ -8,33 +8,46 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.local/share/nvim/plug/dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
-Plug 'herrbischoff/cobalt2.vim'
+" Plug 'herrbischoff/cobalt2.vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Coding helpers
 " Core stuff
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
-Plug 'honza/vim-snippets'
+" Plug 'w0rp/ale'
+" Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'liuchengxu/vista.vim'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'tpope/vim-commentary'
+" Plug 'liuchengxu/vista.vim'
 
 " Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'Vimjas/vim-python-pep8-indent'
-" Rust
-Plug 'rust-lang/rust.vim'
-" R
-Plug 'jalvesaq/Nvim-R'
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'Vimjas/vim-python-pep8-indent'
 " CSV
 Plug 'chrisbra/csv.vim'
-" Ansible
-Plug 'pearofducks/ansible-vim'
-Plug 'szymonmaszke/vimpyter'
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+
+" Extentions to built-in LSP, for example, providing type inlay hints
+Plug 'nvim-lua/lsp_extensions.nvim'
+
+" Autocompletion framework
+Plug 'hrsh7th/nvim-cmp'
+" cmp LSP completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+" cmp Snippet completion
+Plug 'hrsh7th/cmp-vsnip'
+" cmp Path completion
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+
+Plug 'mfussenegger/nvim-lint'
+
+" Plug 'szymonmaszke/vimpyter'
 call plug#end()
