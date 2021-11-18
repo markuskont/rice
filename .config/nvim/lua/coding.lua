@@ -5,17 +5,17 @@ local cmp = require'cmp'
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require('lint').linters_by_ft = {
-  go = {'golangcilint',},
-  python = {'flake8',},
-}
+-- require('lint').linters_by_ft = {
+--   go = {'golangcilint',},
+--   python = {'flake8',},
+-- }
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
     signs = true,
-    update_in_insert = true,
+    update_in_insert = false,
   }
 )
 
@@ -94,3 +94,9 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+      enable = true
+  },
+}

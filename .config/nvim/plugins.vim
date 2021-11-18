@@ -18,11 +18,11 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Coding helpers
 " Core stuff
 Plug 'vim-airline/vim-airline'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 " Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'tpope/vim-commentary'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
 " Plug 'liuchengxu/vista.vim'
 
 " Python
@@ -48,6 +48,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
 Plug 'mfussenegger/nvim-lint'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'szymonmaszke/vimpyter'
 call plug#end()

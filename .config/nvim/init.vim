@@ -7,7 +7,7 @@ if !exists('g:vscode')
 	source $HOME/.config/nvim/airline.vim
 
 	source $HOME/.config/nvim/coding/core.vim
-	" source $HOME/.config/nvim/coding/linting.vim
+	source $HOME/.config/nvim/coding/linting.vim
 	" source $HOME/.config/nvim/coding/coc.vim
 	source $HOME/.config/nvim/coding/golang.vim
 	source $HOME/.config/nvim/coding/python.vim
