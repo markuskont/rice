@@ -15,13 +15,14 @@ Plug 'tpope/vim-fugitive'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Coding helpers
 " Core stuff
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 " Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " Plug 'liuchengxu/vista.vim'
 
