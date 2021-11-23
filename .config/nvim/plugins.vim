@@ -12,6 +12,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
