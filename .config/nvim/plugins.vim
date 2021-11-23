@@ -2,6 +2,10 @@ call plug#begin('~/.local/share/nvim/plug')
 " Cannot live without
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 "Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 "Plug 'lotabout/skim.vim'
 " Color schemes
