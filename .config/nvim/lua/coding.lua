@@ -2,9 +2,6 @@
 local nvim_lsp = require'lspconfig'
 local cmp = require'cmp'
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 -- require('lint').linters_by_ft = {
 --   go = {'golangcilint',},
 --   python = {'flake8',},
@@ -50,6 +47,9 @@ cmp.setup({
   },
 
 })
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 --
 -- Use an on_attach function to only map the following keys

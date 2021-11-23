@@ -6,7 +6,7 @@ set signcolumn=yes
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
 " Show diagnostic popup on cursor hover
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd BufWritePost <buffer> lua require('lint').try_lint()
 
 " Goto previous/next diagnostic warning/error
