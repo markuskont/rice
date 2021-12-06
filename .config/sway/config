@@ -9,6 +9,7 @@ set $menu wofi --show=run --hide-scroll | xargs swaymsg exec --
 # monitors
 set $laptop eDP-1
 set $home 'Dell Inc. DELL P3222QE 2DP5S83'
+set $home2 'Dell Inc. DELL U2312HM 59DJP17EB5YL'
 
 floating_modifier $mod
 
@@ -36,7 +37,7 @@ client.background       $background
 #default_border normal 0
 default_border pixel 2
 
-smart_borders on
+smart_borders off
 #new_window none
 
 # Binds
@@ -84,12 +85,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-bindsym $mod+Escape		workspace prev
+# bindsym $mod+a focus parent
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -146,19 +142,27 @@ bar {
         swaybar_command waybar
 }
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# screenshot
+bindsym $mod+Print exec grim -t jpeg -g "$(slurp)" ~/Pictures/$(date +%Y-%m-%d_%H-%M-%s).jpg
 
-# Media player controls
+# Power management
+bindsym $mod+Escape	exec ~/.local/bin/dmenu-power-wayland.sh
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym $mod+down exec brightnessctl set 5%-
+bindsym $mod+up exec brightnessctl set +5%
+
+#bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+#bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-# Brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl -q set +5% # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightnessctl -q set 5%- # decrease screen brightnes
+# bindsym XF86Search exec bemenu-run
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
@@ -166,13 +170,8 @@ bindsym $mod+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+plus scratchpad show
 
-# # #---Dropdown/Scratchpad Windows---# #
-# for_window [instance="spotify"] floating enable
-# for_window [instance="spotify"] resize set 1000 700
-# for_window [instance="spotify"] move scratchpad
-# for_window [instance="spotify"] border pixel 5
-# exec --no-startup-id spotify
-# bindsym $mod+o			[instance="spotify"] scratchpad show; [instance="spotify"] move position center
+# Window navigation
+bindsym $mod+a exec swayr switch-window
 
 # # #---Dropdown/Scratchpad Windows---# #
 # for_window [instance="dropdown"] floating enable
@@ -184,6 +183,7 @@ bindsym $mod+plus scratchpad show
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
+# for_window [class="Spotify"] floating enable
 
 # disable mouse warping, very annoying
 mouse_warping none
@@ -192,45 +192,44 @@ focus_follows_mouse no
 output $laptop pos 0 0 res 1920x1080
 output $home pos 1920 0 res 3840x2160
 
+# output $home2 pos 0 0 res 1920x1080
+# output $laptop pos 1920 0 res 1920x1080
+
 output "*" bg /home/markus/.config/wall.pic fill
 
 bindswitch --reload lid:on output $laptop disable
 bindswitch --reload lid:off output $laptop enable
 
 input * xkb_layout "ee,us"
-input 1133:16490:Logitech_MX_Anywhere_2S {
+input 1133:45082:MX_Anywhere_2S_Mouse {
     accel_profile flat
     pointer_accel 0.0
 }
-input 1133:50487:Logitech_USB_Receiver {
-    accel_profile flat
-    pointer_accel 0.0
-}
-input 5426:28:Razer__Razer_Abyssus {
-    accel_profile flat
-    pointer_accel 0.0
-}
-input 1133:49291:Logitech_G502_HERO_Gaming_Mouse_Consumer_Control {
-    accel_profile flat
-    pointer_accel 0.0
-}
-input 1133:16478:Logitech_M720_Triathlon {
-    accel_profile flat
-    pointer_accel 0.0
-}
+# FIXME
 input  1133:16514:Logitech_MX_Master_3 {
     accel_profile flat
     pointer_accel 0.0
 }
+input 1133:45091:Logitech_Wireless_Mouse_MX_Master_3 {
+    accel_profile flat
+    pointer_accel 0.0
+}
+# FIXME
 input 1133:16500:Logitech_G305 {
     accel_profile flat
     pointer_accel 0.0
 }
 
+set $lock swaylock --clock --indicator --screenshots --effect-scale 0.4 --effect-vignette 0.2:0.5 --effect-blur 4x2 --datestr "%a %e.%m.%Y" --timestr "%k:%M"
+
 # STARTUP
+exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec --no-startup-id nm-applet --indicator
 exec --no-startup-id ~/.local/bin/pipewire-stuff
 
-# exec swayidle -w \
-#	timeout 60 'swaymsg "output * dpms off"' \
-#	resume 'swaymsg "output * dpms on"'
+#exec eval $(gnome-keyring-daemon --start)
+#exec export SSH_AUTH_SOCK
+
+exec swayidle -w \
+    timeout 60 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
