@@ -112,12 +112,6 @@ nvim_lsp.gopls.setup{
 	on_attach = on_attach,
 }
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-      enable = true
-  },
-}
-
 function goimports(timeoutms)
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
