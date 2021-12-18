@@ -6,6 +6,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'kyazdani42/nvim-tree.lua'
+
 "Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 "Plug 'lotabout/skim.vim'
 " Color schemes
@@ -24,7 +26,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Coding helpers
 " Core stuff
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'honza/vim-snippets'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'sheerun/vim-polyglot'
