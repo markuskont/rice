@@ -1,9 +1,6 @@
 if !exists('g:vscode')
   lua require('options')
   lua require('keybindings')
-  lua require('nvim-tree')
-  lua require('telescope')
-  lua require('treesitter')
 
 	source $HOME/.config/nvim/core.vim
 	source $HOME/.config/nvim/functions.vim
@@ -17,6 +14,9 @@ if !exists('g:vscode')
 	source $HOME/.config/nvim/coding/git.vim
 	source $HOME/.config/nvim/coding/text.vim
 
+  lua require('nvim-tree')
+  lua require('telescope')
+  lua require('treesitter')
   lua require('coding')
   source $HOME/.config/nvim/coding/lsp-stuff.vim
 
