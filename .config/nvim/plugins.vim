@@ -65,5 +65,8 @@ Plug 'mfussenegger/nvim-lint'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'folke/which-key.nvim'
+
 " Plug 'szymonmaszke/vimpyter'
 call plug#end()
