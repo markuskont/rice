@@ -6,9 +6,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-web-devicons'
 
-" Color schemes
 Plug 'https://github.com/dracula/vim.git', { 'dir': '~/.local/share/nvim/plug/dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
@@ -19,7 +18,6 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Coding helpers
 Plug 'vim-airline/vim-airline'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-commentary'
