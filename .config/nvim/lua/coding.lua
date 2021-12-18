@@ -2,11 +2,6 @@
 local nvim_lsp = require'lspconfig'
 local cmp = require'cmp'
 
--- require('lint').linters_by_ft = {
---   go = {'golangcilint',},
---   python = {'flake8',},
--- }
-
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

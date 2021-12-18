@@ -18,7 +18,6 @@ if !exists('g:vscode')
   lua require('telescope')
   lua require('treesitter')
   lua require('coding')
-  source $HOME/.config/nvim/coding/lsp-stuff.vim
-
+  lua require('linting')
   lua require('whichkey')
 endif
