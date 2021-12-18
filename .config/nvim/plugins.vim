@@ -7,6 +7,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
 
 "Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 "Plug 'lotabout/skim.vim'
