@@ -39,7 +39,6 @@ Plug 'golang/vscode-go'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-Plug 'mfussenegger/nvim-lint'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'antoinemadec/FixCursorHold.nvim'
