@@ -51,7 +51,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 Plug 'golang/vscode-go'
+
 " cmp Path completion
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
