@@ -18,5 +18,6 @@ if !exists('g:vscode')
   lua require('telescope')
   lua require('treesitter')
   lua require('coding')
+  lua require('complete')
   lua require('whichkey')
 endif
