@@ -6,7 +6,7 @@ end
 golang.setup({
     -- auto commands
     auto_format = false,
-    auto_lint = true,
+    auto_lint = false,
     -- linters: revive, errcheck, staticcheck, golangci-lint
     linter = 'revive',
     -- lint_prompt_style: qf (quickfix), vt (virtual text)

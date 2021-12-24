@@ -19,5 +19,6 @@ if !exists('g:vscode')
   lua require('coding')
   lua require('complete')
   lua require('golang')
+  lua require('linting')
   lua require('whichkey')
 endif
