@@ -16,7 +16,14 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Go specific plugins
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"
+" dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+" nvim-go
+Plug 'crispgm/nvim-go'
 
 Plug 'vim-airline/vim-airline'
 Plug 'AndrewRadev/splitjoin.vim'

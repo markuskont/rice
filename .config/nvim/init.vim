@@ -8,7 +8,6 @@ if !exists('g:vscode')
 	source $HOME/.config/nvim/theme.vim
 	source $HOME/.config/nvim/airline.vim
 
-	source $HOME/.config/nvim/coding/golang.vim
 	source $HOME/.config/nvim/coding/python.vim
 	source $HOME/.config/nvim/coding/yaml.vim
 	source $HOME/.config/nvim/coding/git.vim
@@ -19,5 +18,6 @@ if !exists('g:vscode')
   lua require('treesitter')
   lua require('coding')
   lua require('complete')
+  lua require('golang')
   lua require('whichkey')
 endif
