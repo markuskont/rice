@@ -15,7 +15,7 @@ null_ls.setup({
     formatting.autopep8,
     formatting.stylua,
     formatting.goimports,
-    diagnostics.flake8,
+    diagnostics.flake8.with({ extra_args = { "--max-line-length", "140" } }),
     diagnostics.golangci_lint
   },
 })
