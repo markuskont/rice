@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
 
 end
 
-local servers = { 'gopls', 'pyright', 'rust_analyzer' }
+local servers = { 'gopls', 'pyright', 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -36,3 +36,25 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- local configs = require 'lspconfig.configs'
+-- -- Check if the config is already defined (useful when reloading this file)
+-- if not configs.suricata_language_server then
+--   configs.suricata_language_server = {
+--     default_config = {
+--       cmd = {'suricata-language-server'};
+--       filetypes = {'suricata', 'hog'};
+--       root_dir = function(fname)
+--         return nvim_lsp.util.find_git_ancestor(fname)
+--       end;
+--       single_file_support = true;
+--       settings = {};
+--     };
+--   }
+-- end
+
+-- local suricata_ls_cmd = {'suricata-language-server', '--suricata-binary=/home/markus/Tools/Suricata/7-dev-latest/bin/suricata'}
+-- require'lspconfig'.suricata_language_server.setup{
+--   cmd = suricata_ls_cmd,
+--   on_attach = on_attach,
+-- }
