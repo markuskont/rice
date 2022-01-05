@@ -17,9 +17,6 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Go specific plugins
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"
 " dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
