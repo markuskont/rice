@@ -20,5 +20,6 @@ if !exists('g:vscode')
   lua require('complete')
   lua require('golang')
   lua require('linting')
+  lua require('pairs')
   lua require('whichkey')
 endif
