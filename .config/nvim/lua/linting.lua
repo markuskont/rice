@@ -16,6 +16,20 @@ null_ls.setup({
     formatting.stylua,
     formatting.goimports,
     diagnostics.flake8.with({ extra_args = { "--max-line-length", "140", "--ignore=E501,E722,W504" } }),
-    diagnostics.golangci_lint
+    diagnostics.golangci_lint.with({
+      extra_args = {
+        "--disable-all",
+        "-E", "deadcode",
+        "-E", "gosimple",
+        "-E", "gosec",
+        "-E", "govet",
+        "-E", "ineffassign",
+        "-E", "staticcheck",
+        "-E", "structcheck",
+        "-E", "typecheck",
+        "-E", "unused",
+        "-E", "varcheck"
+      }
+    }),
   },
 })
