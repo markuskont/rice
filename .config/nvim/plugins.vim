@@ -18,6 +18,7 @@ Plug 'tpope/vim-fugitive'
 " Plug 'airblade/vim-gitgutter'
 
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'akinsho/toggleterm.nvim'
 
 " dependencies
 Plug 'nvim-lua/plenary.nvim'

@@ -14,6 +14,7 @@ if !exists('g:vscode')
 
   lua require('explorer')
   lua require('git')
+  lua require('terminal')
   lua require('telescope')
   lua require('treesitter')
   lua require('coding')
