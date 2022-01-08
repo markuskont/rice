@@ -23,4 +23,5 @@ if !exists('g:vscode')
   lua require('linting')
   lua require('pairs')
   lua require('whichkey')
+  lua require('autocommands')
 endif
