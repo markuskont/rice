@@ -15,7 +15,9 @@ Plug 'mhartington/oceanic-next'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+
+Plug 'lewis6991/gitsigns.nvim'
 
 " dependencies
 Plug 'nvim-lua/plenary.nvim'

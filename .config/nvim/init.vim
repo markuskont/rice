@@ -10,10 +10,10 @@ if !exists('g:vscode')
 
 	source $HOME/.config/nvim/coding/python.vim
 	source $HOME/.config/nvim/coding/yaml.vim
-	source $HOME/.config/nvim/coding/git.vim
 	source $HOME/.config/nvim/coding/text.vim
 
   lua require('explorer')
+  lua require('git')
   lua require('telescope')
   lua require('treesitter')
   lua require('coding')
