@@ -4,6 +4,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'ahmedkhalf/project.nvim'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'kyazdani42/nvim-tree.lua'
