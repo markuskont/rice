@@ -15,6 +15,7 @@ null_ls.setup({
     formatting.autopep8,
     formatting.stylua,
     formatting.goimports,
+    diagnostics.eslint.with({ prefer_local = "node_modules/.bin" }),
     diagnostics.flake8.with({ extra_args = { "--max-line-length", "140", "--ignore=E501,E722,W504" } }),
     diagnostics.golangci_lint.with({
       extra_args = {
