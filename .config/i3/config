@@ -32,31 +32,7 @@ floating_modifier $mod
 set $term --no-startup-id alacritty
 
 for_window [class="^.*"] border pixel 2
-#new_window 1pixel
-set_from_resource $darkblack	color0  #000000
-set_from_resource $black	color8  #000000
-set_from_resource $darkred	color1  #000000
-set_from_resource $red		color9  #000000
-set_from_resource $darkgreen	color2  #000000
-set_from_resource $green	color10 #000000
-set_from_resource $darkyellow	color3  #000000
-set_from_resource $yellow	color11 #000000
-set_from_resource $darkblue	color4  #000000
-set_from_resource $blue		color12 #000000
-set_from_resource $darkmagenta	color5  #000000
-set_from_resource $magenta	color13 #000000
-set_from_resource $darkcyan	color6  #000000
-set_from_resource $cyan		color14 #000000
-set_from_resource $darkwhite	color7  #000000
-set_from_resource $white	color15 #000000
-set $transparent		#00000000
-
-#                       BORDER		BACKGROUND	TEXT		INDICATOR   CHILD_BORDER
-client.focused		$red		$red		$magenta	$darkmagenta		$darkblue
-client.unfocused	$transparent	$blue		$white		$darkblue		$darkblack
-client.focused_inactive	$transparent	$blue		$white		$darkblue		$darkblack
-client.urgent		$darkred	$darkred	$black		$darkred		$darkred
-client.background $black
+default_border pixel 2
 
 gaps inner 5
 gaps outer 5
@@ -77,18 +53,12 @@ bindcode $mod+48	exec		lock
 
 # personal binds
 bindsym $mod+t          split toggle
-#bindsym $mod+s          exec quickswitch
-#bindsym $mod+s          exec sshmanager
-#bindsym $mod+s          sticky toggle
 
-# work binds
-#bindsym $mod+o          exec terminal_window
-
-bindsym $mod+Shift+t    gaps inner current set 10; gaps outer current set 10
-bindsym $mod+Shift+y    resize shrink width 10 px or 10ppt
-bindsym $mod+Shift+u    resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+i    resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+o    resize grow width 10 px or 10 ppt
+# bindsym $mod+Shift+t    gaps inner current set 10; gaps outer current set 10
+# bindsym $mod+Shift+y    resize shrink width 10 px or 10ppt
+# bindsym $mod+Shift+u    resize shrink height 10 px or 10 ppt
+# bindsym $mod+Shift+i    resize grow height 10 px or 10 ppt
+# bindsym $mod+Shift+o    resize grow width 10 px or 10 ppt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -134,7 +104,8 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
-bindsym $mod+Escape		workspace prev
+bindsym $mod+Tab		      workspace next
+bindsym $mod+Shift+Tab		workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -147,19 +118,6 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-
-#bindsym $mod+F1 workspace F1
-#bindsym $mod+F2 workspace F2
-#bindsym $mod+F3 workspace F3
-#bindsym $mod+F4 workspace F4
-#bindsym $mod+F5 workspace F5
-#bindsym $mod+F6 workspace F6
-#bindsym $mod+F7 workspace F7
-#bindsym $mod+F8 workspace F8
-#bindsym $mod+F9 workspace F9
-#bindsym $mod+F10 workspace F10
-#bindsym $mod+F11 workspace F11
-#bindsym $mod+F12 workspace F12
 
 # named workspaces
 bindsym $mod+c workspace c
@@ -217,9 +175,9 @@ bindsym $mod+plus scratchpad show
 # Media keys
 
 # pulse audio volume control
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -- '-5%'
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 -- '+5%'
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
+# bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -- '-5%'
+# bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 -- '+5%'
+# bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0
 
 # #---Dropdown/Scratchpad Windows---# #
 for_window [instance="spotify"] floating enable
@@ -229,20 +187,15 @@ for_window [instance="spotify"] border pixel 5
 exec --no-startup-id spotify
 bindsym $mod+o			[instance="spotify"] scratchpad show; [instance="spotify"] move position center
 
-# #---Dropdown/Scratchpad Windows---# #
-for_window [instance="keepassx2"] floating enable
-for_window [instance="keepassx2"] resize set 1920 1080
-for_window [instance="keepassx2"] move scratchpad
-for_window [instance="keepassx2"] border pixel 5
-exec --no-startup-id keepassx2
-bindsym $mod+p			[instance="keepassx2"] scratchpad show; [instance="keepassx2"] move position center
-
-# #---Dropdown/Scratchpad Windows---# #
+# dropdown terminal
 for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 1920 1080
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
-exec --no-startup-id alacritty --class dropdown -e tmux new -s scratch
+
+exec --no-startup-id tmux new -s scratch
+exec --no-startup-id alacritty --class dropdown -e tmux new a -t scratch
+
 bindsym $mod+u			[instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 # disable mouse warping, very annoying
@@ -255,11 +208,11 @@ focus_follows_mouse no
 # STARTUP
 
 exec --no-startup-id dunst
-exec --no-startup-id picom -b
+# exec --no-startup-id picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id sxhkd
 
-exec --no-startup-id xrandr --output HDMI-3 --auto --rotate left --right-of DP-1
+# exec --no-startup-id xrandr --output HDMI-3 --auto --rotate left --right-of DP-1
 exec --no-startup-id ~/.config/polybar/launch.sh
 
 exec --no-startup-id feh --bg-fill ~/.config/wall.pic
