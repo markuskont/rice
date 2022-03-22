@@ -1,14 +1,14 @@
 " FZF bindings
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>L :BLines<CR>
-nnoremap <leader>B :Buffers<CR>
-nnoremap <leader>W :Windows<CR>
-nnoremap <leader>g :GFiles<CR>
-nnoremap <leader>G :GFiles?<CR>
-nnoremap <leader>m :Marks<CR>
-nnoremap <leader>h :History:<CR>
-nnoremap <leader>H :History<CR>
+" nnoremap <leader>f :FZF<CR>
+" nnoremap <leader>l :Lines<CR>
+" nnoremap <leader>L :BLines<CR>
+" nnoremap <leader>B :Buffers<CR>
+" nnoremap <leader>W :Windows<CR>
+" nnoremap <leader>g :GFiles<CR>
+" nnoremap <leader>G :GFiles?<CR>
+" nnoremap <leader>m :Marks<CR>
+" nnoremap <leader>h :History:<CR>
+" nnoremap <leader>H :History<CR>
 
 " FZF configs
 " [Buffers] Jump to the existing window if possible
