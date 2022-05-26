@@ -1,8 +1,9 @@
 # Basic binds
 super + Return
   alacritty
-super + shift + Return
-  float-term
+super + shift + Return 
+  alacritty --class floating
+
 super + a
   rofi -show window
 super + s
@@ -15,7 +16,7 @@ super + r
   alacritty -e ranger
 super + Print
   import ~/Pictures/ss-$(date +%Y-%m-%d_%H-%M-%s).png
-super + q
+super + Escape
   dmenu-power.sh
 
 # Media keys 
@@ -34,20 +35,6 @@ XF86AudioRaiseVolume
 XF86MonBrightness{Up,Down}
 	xbacklight {-inc,-dec} 10
 
-# # media keys
-# XF86Audio{Next,Prev,Play,Stop}
-# 	mpc {next,prev,toggle,stop}
-
-# # volume
-# XF86Audio{RaiseVolume,LowerVolume}
-# 	amixer -q sset Master,0 {'5+','5-'}
-# XF86AudioMute
-# 	amixer -q sset Master,0 toggle
-
-# make sxhkd reload its configuration files:
-super + Escape
-  pkill -USR1 -x sxhkd
-
 super + shift + Escape
   bspc wm -r
 
@@ -64,11 +51,8 @@ super + space
 #
 
 # set the window state
-super + {t,shift + t}
-  bspc node -t {tiled,pseudo_tiled}
-
-super + f
-  bspc node -t {floating}
+super + {f,shift + f}
+  bspc node -t {floating,tiled}
 
 # set the node flags
 super + ctrl + {F5,F6,F7,F8}
