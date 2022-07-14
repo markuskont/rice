@@ -214,7 +214,9 @@ exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id sxhkd
 
-# exec --no-startup-id xrandr --output HDMI-3 --auto --rotate left --right-of DP-1
+exec --no-startup-id xrandr --output DP-2 --auto
+exec --no-startup-id xrandr --output DP-0 --auto --rotate right --right-of DP-2
+
 exec --no-startup-id ~/.config/polybar/launch.sh
 
 exec --no-startup-id feh --bg-fill ~/.config/wall.pic
