@@ -8,7 +8,8 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 case $(hostname -s) in
   moksha)
-    polybar --config=${HOME}/.config/polybar/moksha.conf top &
+    polybar --config=${HOME}/.config/polybar/moksha.conf main &
+    polybar --config=${HOME}/.config/polybar/moksha.conf secondary &
     ;;
   *)
     polybar top &
