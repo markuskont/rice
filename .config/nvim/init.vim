@@ -13,10 +13,10 @@ if !exists('g:vscode')
 	source $HOME/.config/nvim/coding/yaml.vim
 	source $HOME/.config/nvim/coding/text.vim
 
+  lua require('finder')
   lua require('explorer')
   lua require('git')
   lua require('terminal')
-  lua require('finder')
   lua require('projectmanager')
   lua require('treesitter')
   lua require('coding')

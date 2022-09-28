@@ -26,6 +26,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 " nvim-go
 Plug 'crispgm/nvim-go'
+"Plug 'zchee/nvim-go', { 'do': 'make'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 Plug 'vim-airline/vim-airline'
 Plug 'AndrewRadev/splitjoin.vim'
