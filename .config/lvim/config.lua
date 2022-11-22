@@ -186,10 +186,11 @@ lvim.builtin.treesitter.highlight.enable = true
 --   end,
 -- })
 lvim.plugins = {
-  {"folke/trouble.nvim", cmd = "TroubleToggle"},
-  {"morhetz/gruvbox"},
-  {"olexsmir/gopher.nvim"},
-  {"leoluz/nvim-dap-go"},
+  { "folke/trouble.nvim", cmd = "TroubleToggle" },
+  { "morhetz/gruvbox" },
+  { "olexsmir/gopher.nvim" },
+  { "leoluz/nvim-dap-go" },
+  { "AckslD/swenv.nvim" },
 }
 --
 -- core vim options
@@ -274,3 +275,21 @@ if not dap_ok then
 end
 
 dapgo.setup()
+
+--- Python
+
+formatters.setup {
+  { command = "autopep8", filetypes = { "python" } },
+}
+
+-- Set a linter.
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "flake8", filetypes = { "python" } },
+}
+
+lvim.builtin.which_key.mappings["P"] = {
+  name = "Python",
+  i = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Pick Env" },
+  d = { "<cmd>lua require('swenv.api').get_current_venv()<cr>", "Show Env" },
+}
