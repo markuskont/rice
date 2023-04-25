@@ -40,12 +40,36 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 local formatters = require "lvim.lsp.null-ls.formatters"
+
 -- Go
 
+------------------------
+-- Formatting
+------------------------
 formatters.setup {
   { command = "goimports", filetypes = { "go" } },
   { command = "gofumpt", filetypes = { "go" } },
 }
+
+lvim.format_on_save = {
+  pattern = { "*.go" },
+}
+
+------------------------
+-- Dap
+------------------------
+local dap_ok, dapgo = pcall(require, "dap-go")
+if not dap_ok then
+  return
+end
+
+dapgo.setup()
+
+------------------------
+-- LSP
+------------------------
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
+
 local lsp_manager = require "lvim.lsp.manager"
 lsp_manager.setup("golangci_lint_ls", {
   on_init = require("lvim.lsp").common_on_init,
@@ -56,6 +80,22 @@ lsp_manager.setup("gopls", {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
+    local map = function(mode, lhs, rhs, desc)
+      if desc then
+        desc = desc
+      end
+
+      vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
+    end
+    map("n", "<leader>Ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
+    map("n", "<leader>Ct", "<cmd>GoMod tidy<cr>", "Tidy")
+    map("n", "<leader>Ca", "<cmd>GoTestAdd<Cr>", "Add Test")
+    map("n", "<leader>CA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
+    map("n", "<leader>Ce", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
+    map("n", "<leader>Cg", "<cmd>GoGenerate<Cr>", "Go Generate")
+    map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
+    map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment")
+    map("n", "<leader>DT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
   end,
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
@@ -87,24 +127,6 @@ gopher.setup {
     iferr = "iferr",
   },
 }
-lvim.builtin.which_key.mappings["L"] = {
-  name = "Go",
-  i = { "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies" },
-  t = { "<cmd>GoMod tidy<cr>", "Tidy" },
-  a = { "<cmd>GoTestAdd<Cr>", "Add Test" },
-  A = { "<cmd>GoTestsAll<Cr>", "Add All Tests" },
-  e = { "<cmd>GoTestsExp<Cr>", "Add Exported Tests" },
-  g = { "<cmd>GoGenerate<Cr>", "Go Generate" },
-  f = { "<cmd>GoGenerate %<Cr>", "Go Generate File" },
-  c = { "<cmd>GoCmt<Cr>", "Generate Comment" },
-}
-local dap_ok, dapgo = pcall(require, "dap-go")
-if not dap_ok then
-  return
-end
-
-dapgo.setup()
-
 -- Python
 formatters.setup {
   { command = "autopep8", filetypes = { "python" } },
