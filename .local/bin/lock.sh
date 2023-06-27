@@ -1,16 +1,16 @@
 #!/bin/bash
-icon="$HOME/.config/i3/lock.png"
-# create a temp file
-img=$(mktemp /tmp/XXXXXXXXXX.png)
-# Take a screenshot of current desktop
-import -window root $img 
-# Pixelate the screenshot
-convert $img -scale 10% -scale 1000% $img
-# Alternatively, blur the screenshot (slow!)
-#convert $img -blur 2,5 $img
-# Add the lock image
-#convert $img $icon -gravity center -composite $img
-# Run i3lock with custom background
-i3lock -i $img
-# Remove the tmp file
-rm $img
+swaylock \
+  --screenshots \
+  --clock \
+  --indicator \
+  --indicator-radius 100 \
+  --indicator-thickness 7 \
+  --effect-blur 7x5 \
+  --effect-vignette 0.5:0.5 \
+  --ring-color bb00cc \
+  --key-hl-color 880033 \
+  --line-color 00000000 \
+  --inside-color 00000088 \
+  --separator-color 00000000 \
+  --grace 2 \
+  --fade-in 0.2
