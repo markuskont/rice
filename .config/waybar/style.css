@@ -1,92 +1,60 @@
 * {
-    border-radius: 0;
-    font-family: Liga SFMono Nerd Font;
-    padding-bottom: 1px;
-    padding-top: 1px;
-    font-size: 11px;
-    min-height: 0;
-
-    /* border: 10px solid transparent;
-    border-image: url(~/.config/sway/borders/dropShadowDarkOffset2.png) 30 stretch; */
+  border: none;
+  font-family: 'Fira Code', 'Symbols Nerd Font Mono';
+  font-size: 16px;
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+  min-height: 30px;
 }
 
 window#waybar {
-    padding: 5px;
-    background: transparent;
-    color: white;
+  background: transparent;
 }
 
-tooltip {
-	background: #2a2e38;
-	border-radius: 15px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #2a2e38;
-	}
+#custom-arch, #workspaces {
+  border-radius: 10px;
+  background-color: #11111b;
+  color: #b4befe;
+  margin-top: 15px;
+	margin-right: 15px;
+  padding-top: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#custom-arch {
+  font-size: 20px;
+	margin-left: 15px;
+  color: #b4befe;
+}
 
 #workspaces button {
-    padding: 5px 10px;
-    color: #bbc2cf;
+  background: #11111b;
+  color: #b4befe;
 }
 
-#workspaces button.focused {
-    box-shadow: 2px 2px 6px 1px black;
-    color: #2a2e38;
-    background-color: #51afef;
-    border-radius: 15px;
+#clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #pulseaudio, #tray{
+  border-radius: 10px;
+  background-color: #11111b;
+  color: #cdd6f4;
+  margin-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 15px;
 }
 
-#workspaces button.urgent {
-    color: #2a2e38;
-    background-color: #7bc275;
-    border-radius: 15px;
-}
-
-#workspaces button:hover {
-	background-color: #5cEfFF;
-	color: #2a2e38;
-	border-radius: 15px;
-}
-
-#clock, #battery, #pulseaudio, #network, #workspaces, #cpu, #tray {
-	background-color: #2a2e38;
-	padding: 5px 10px;
-	margin: 5px 0px;
-}
-
-#workspaces {
-	background-color: #2a2e38;
-	border-radius: 15px 0px 0px 15px;
-}
-
-#clock {
-    color: #FCCE7B;
-    border-radius: 0px 15px 15px 0px;
-    margin-right: 10px;
-}
-
-#battery {
-    color: #7bc275;
-}
-
-#cpu {
-    color: #7bc275;
-}
-
-#battery.charging {
-    color: #7bc275;
-}
-
-#battery.warning:not(.charging) {
-    background-color: #2a2e38;
-    color: #FCCE7B;
+#backlight, #bluetooth {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 5px;
+  margin-right: 0
 }
 
 #network {
-	color: #C57BDB;
-	border-radius: 0px 0px 0px 0px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 5px;
 }
 
-#pulseaudio {
-	color: #4db5bd;
+#clock {
+  margin-right: 0;
 }

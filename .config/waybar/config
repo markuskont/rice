@@ -1,86 +1,57 @@
 {
-    "position": "bottom",
-    "height": 20,
-    "modules-center": ["sway/workspaces", "network", "pulseaudio", "battery", "tray", "clock"],
-
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"format": "{icon}",
-		"persistent_workspaces": {
-			"c": [],
-			"v": [],
-			"b": [],
-			"n": [],
-			"m": [],
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": [],
-      "6": [],
-      "7": [],
-      "8": [],
-      "9": [],
-      "10": []
-		},
-		"format-icons": {
-			"c": "code",
-			"v": "VM",
-			"b": "browse",
-			"n": "SN",
-			"m": "MX",
-      "1": "I",
-      "2": "II",
-      "3": "III",
-      "4": "IV",
-      "5": "V",
-      "6": "VI",
-      "7": "VII",
-      "8": "VIII",
-      "9": "IX",
-      "10": "X"
-		}
-	},
-
-	"clock": {
-    "format": "{:%H:%M} ",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-	},
-	"battery": {
-        	"states": {
-            		"warning": 30,
-            		"critical": 15,
-        	},
-        	"format": "Bat: {capacity}%",
-        	"format-charging": "Bat: {capacity}% Chr: {time}",
-        	"format-plugged": "Bat: {capacity}% Chr: {time}",
-        	"format-alt": "{time}",
-        	"format-full": "{capacity}%",
-	},
-	"network": {
-      "format-wifi": "WiFi:  {essid}",
-      "format-ethernet": "Eth: Disconnected",
-      "format-linked": "{ifname} (No IP) ",
-      "format-disconnected": "net: Disconnected",
-      "tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
-	},
-	"pulseaudio": {
-		"on-click": "pactl set-sink-mute 45 toggle",
-		"format": "{icon}  {volume}%",
-        	"format-muted": "Vol: Muted",
-        	"format-icons": {
-            	"headphone": "headphone:",
-            	"hands-free": "",
-            	"headset": "",
-            	"phone": "",
-            	"portable": "",
-            	"car": "",
-            	"default": ["Vol:"]
-        },
+  "layer": "top",
+    "modules-left": ["custom/arch", "wlr/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "tray"],
+    "custom/arch": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "sh $HOME/.config/rofi/bin/powermenu"
     },
-    "cpu": {
-        "interval": 10,
-        "format": "CPU: {}%",
-        "max-length": 10
-    }
+    "wlr/workspaces": {
+      "format": "{name}",
+      "format": "{icon}",
+      "tooltip": false,
+      "all-outputs": true,
+      "sort-by-number": true,
+      "format-icons": {
+        "active": "",
+        "default": ""
+      }
+    },
+    "clock": {
+      "format": "<span color='#b4befe'> </span>{:%H:%M}",
+    },
+    "bluetooth": {
+      "format": "<span color='#b4befe'></span> {status}",
+      "format-disabled": "", // an empty format will hide the module
+      "format-connected": "<span color='#b4befe'></span> {num_connections}",
+      "tooltip-format": "{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}   {device_address}"
+    },
+    "pulseaudio": {
+      "format": "<span color='#b4befe'>{icon}</span> {volume}%",
+      "format-muted": "",
+      "tooltip": false,
+      "format-icons": {
+        "headphone": "",
+        "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
+      },
+      "scroll-step": 1,
+    },
+    "network": {
+      "interface": "enp5s0",
+      "format": "{ifname}",
+      "format-wifi": "<span color='#b4befe'> </span>{essid}",
+      "format-ethernet": "{ipaddr}/{cidr} ",
+      "format-disconnected": "<span color='#b4befe'>󰖪 </span>No Network",
+      "tooltip": false,
+    },
+    "battery": {
+      "format": "<span color='#b4befe'>{icon}</span> {capacity}%",
+      "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+      "format-charging": "<span color='#b4befe'></span> {capacity}%",
+      "tooltip": false,
+    },
+    "tray": { "icon-size": 21, "spacing": 10 }
 }
