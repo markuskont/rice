@@ -12,7 +12,7 @@
       "format": "{name}",
       "format": "{icon}",
       "tooltip": false,
-      "all-outputs": true,
+      "all-outputs": false,
       "sort-by-number": true,
       "format-icons": {
         "active": "",
