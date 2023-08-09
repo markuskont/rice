@@ -6,5 +6,6 @@ install-configs:
 install-user-conf:
 	$(MAKE) install-env
 	$(MAKE) install-configs
-install-system-conf:
-	$(MAKE) install-dwm-ldm
+tmux:
+	cp ./.tmux.conf ~/.tmux.conf
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
