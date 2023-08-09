@@ -2,7 +2,7 @@
   "layer": "top",
     "modules-left": ["custom/arch", "wlr/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "tray"],
+    "modules-right": ["backlight", "battery", "pulseaudio", "bluetooth", "network", "tray"],
     "custom/arch": {
       "format": "  ",
       "tooltip": false,
@@ -48,8 +48,8 @@
       "tooltip": false,
     },
     "battery": {
-      "format": "<span color='#b4befe'>{icon}</span> {capacity}%",
-      "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+      "format": "<span color='#b4befe'>{icon}</span>  {capacity}%",
+      "format-icons": [" ", " ", " ", " ", " "],
       "format-charging": "<span color='#b4befe'></span> {capacity}%",
       "tooltip": false,
     },
