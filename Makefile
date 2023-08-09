@@ -9,3 +9,5 @@ install-user-conf:
 tmux:
 	cp ./.tmux.conf ~/.tmux.conf
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+waybar:
+	rsync -va --delete ./.config/waybar/ ~/.config/waybar/
